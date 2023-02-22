@@ -1,9 +1,8 @@
 import classNames from 'classnames/bind';
-import { Button, Tooltip, Box, Stack, IconButton } from '@mui/material';
+import { Button, Tooltip, Box, Stack, IconButton, AppBar, Avatar } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
+import Grid from '@mui/material/Unstable_Grid2';
 import { Link, NavLink } from 'react-router-dom';
 
 import config from '~/config';
@@ -14,14 +13,15 @@ const cx = classNames.bind(styles);
 
 function Header() {
   return (
-    <>
-      <AppBar position="sticky" className={cx('wrapper')}>
-        <Toolbar
-          className={cx('container')}
+    <AppBar position="sticky" className={cx('wrapper')}>
+      <Grid container className={cx('container')}>
+        <Grid
+          xs={12}
+          lg={3}
           sx={{
-            px: {
-              xs: 0,
-              md: 8,
+            display: {
+              xs: 'flex',
+              md: 'flex',
             },
           }}
         >
@@ -29,19 +29,17 @@ function Header() {
             className={cx('responsive-button')}
             sx={{
               display: {
-                md: 'none',
+                lg: 'none',
               },
             }}
           >
             <MenuIcon />
           </IconButton>
-
           <Box
             className={cx('logo')}
             sx={{
               flexGrow: {
                 xs: 1,
-                md: 0,
               },
             }}
           >
@@ -49,18 +47,18 @@ function Header() {
               <img src={images.logo} alt="Gaming store" />
             </Link>
           </Box>
-
           <IconButton
             className={cx('responsive-button')}
             sx={{
               display: {
-                md: 'none',
+                lg: 'none',
               },
             }}
           >
             <AccountCircleIcon />
           </IconButton>
-
+        </Grid>
+        <Grid xs={0} lg={6}>
           <Stack
             direction="row"
             spacing={2}
@@ -70,7 +68,7 @@ function Header() {
             sx={{
               display: {
                 xs: 'none',
-                md: 'flex',
+                lg: 'flex',
               },
             }}
           >
@@ -90,30 +88,50 @@ function Header() {
               Về chúng tôi
             </NavLink>
           </Stack>
+        </Grid>
+        <Grid xs={0} lg={3}>
+          {false ? (
+            <Box
+              sx={{
+                display: {
+                  xs: 'none',
+                  lg: 'flex',
+                },
+                justifyContent: 'center',
+                alignItems: 'center',
+                height: '100%',
+              }}
+            >
+              <Avatar alt="avatar" src={process.env.PUBLIC_URL + '/images/avatar-placeholder.jpg'}></Avatar>
+            </Box>
+          ) : (
+            <Box
+              sx={{
+                display: {
+                  xs: 'none',
+                  lg: 'flex',
+                },
+                justifyContent: 'center',
+                alignItems: 'center',
+                height: '100%',
+              }}
+            >
+              <Tooltip title="Đăng ký">
+                <Button variant="contained" color="primary" sx={{ mr: 1 }}>
+                  Đăng ký
+                </Button>
+              </Tooltip>
 
-          <Box
-            sx={{
-              display: {
-                xs: 'none',
-                md: 'flex',
-              },
-            }}
-          >
-            <Tooltip title="Đăng ký">
-              <Button variant="contained" color="primary" sx={{ mr: 1 }}>
-                Đăng ký
-              </Button>
-            </Tooltip>
-
-            <Tooltip title="Đăng nhập">
-              <Button variant="contained" color="error">
-                Đăng nhập
-              </Button>
-            </Tooltip>
-          </Box>
-        </Toolbar>
-      </AppBar>
-    </>
+              <Tooltip title="Đăng nhập">
+                <Button variant="contained" color="error">
+                  Đăng nhập
+                </Button>
+              </Tooltip>
+            </Box>
+          )}
+        </Grid>
+      </Grid>
+    </AppBar>
   );
 }
 

@@ -1,0 +1,38 @@
+.wrapper {
+  background-color: #171a21;
+  color: #fff;
+  position: static;
+  bottom: 0;
+}
+.container {
+  padding: 1rem 0 !important;
+}
+.social-container {
+  display: flex;
+  justify-content: left;
+  a {
+    display: block;
+    height: 32px;
+    width: 32px;
+    margin-right: 0.5rem;
+    svg {
+      font-size: 2rem;
+      color: #fff;
+
+      &:hover {
+        color: #2374e1;
+      }
+    }
+  }
+}
+.link-container {
+  a {
+    display: inline;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    &:hover {
+      color: #2374e1;
+    }
+  }
+}
