@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import Grid from '@mui/material/Unstable_Grid2';
-import { Box, Link, Stack, Typography } from '@mui/material';
+import { Box, Divider, Link, Stack, Typography } from '@mui/material';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
@@ -89,6 +89,7 @@ function Footer() {
           </Grid>
         </Grid>
         <Grid xs={12} lg={8} lgOffset={2}>
+          <Divider />
           <Typography variant="subtitle2" textAlign={'center'}>
             {copyRight} Game Store. All Rights Reserved
           </Typography>

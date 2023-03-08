@@ -6,8 +6,10 @@ import config from '~/config';
 // // Pages
 // import NotFound from '~/pages/NotFound';
 import Home from '~/pages/Home';
+import About from '~/pages/About';
+import Contact from '~/pages/Contact';
+import Community from '~/pages/Community';
 // import Category from '~/pages/Category';
-// import Contact from '~/pages/Contact';
 // import Profile from '~/pages/Profile';
 // import Product from '~/pages/Product';
 // import Products from '~/pages/Products';
@@ -17,15 +19,14 @@ import Home from '~/pages/Home';
 // import ForgetPassword from '~/pages/ForgetPassword';
 // import CartPage from '~/pages/CartPage';
 // import WishListPage from '~/pages/WishListPage';
-// import AboutPage from '~/pages/AboutPage';
 // import CheckoutPage from '~/pages/CheckoutPage';
 
 // Public routes
 const publicRoutes = [
   { path: config.routes.home, component: Home },
   // { path: config.routes.notFound, component: NotFound, layout: HeaderOnly },
-  // { path: config.routes.about, component: AboutPage, layout: HeaderOnly },
-  // { path: config.routes.contact, component: Contact, layout: HeaderOnly },
+  { path: config.routes.about, component: About },
+  { path: config.routes.contact, component: Contact },
   // { path: config.routes.product, component: Product, layout: HeaderOnly },
   // { path: config.routes.products, component: Products, layout: HeaderOnly },
   // { path: config.routes.allProduct, component: Products, layout: HeaderOnly },
@@ -38,6 +39,7 @@ const publicRoutes = [
   // { path: config.routes.categoryWithDefaultPagination, component: Category },
   // { path: config.routes.categoryWithGenre, component: Category },
   // { path: config.routes.category, component: Category, layout: HeaderOnly },
+  { path: config.routes.community, component: Community },
 ];
 
 // Private routes
