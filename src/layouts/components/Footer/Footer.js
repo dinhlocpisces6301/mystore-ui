@@ -24,8 +24,20 @@ function Footer() {
   return (
     <>
       <Grid container className={cx('wrapper')}>
-        <Grid container xs={12} lg={8} lgOffset={2} columnSpacing={2} className={cx('container')}>
-          <Grid xs={2} alignSelf="center">
+        <Grid
+          container
+          xs={12}
+          lg={10}
+          lgOffset={1}
+          className={cx('container')}
+          sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row', lg: 'row' } }}
+        >
+          <Grid
+            lg={3}
+            alignSelf="center"
+            justifyContent="center"
+            sx={{ display: { xs: 'none', md: 'none', lg: 'flex' } }}
+          >
             <Stack className={cx('link-container')}>
               <NavLink to={config.routes.home}>
                 <Typography variant="h6">Trang chủ</Typography>
@@ -41,7 +53,7 @@ function Footer() {
               </NavLink>
             </Stack>
           </Grid>
-          <Grid xs={7} alignSelf="center">
+          <Grid xs={12} md={8} lg={6} alignSelf="center">
             <Typography variant="h6" align="center">
               Chúng tôi luôn cung cấp những dịch vụ tốt nhất cho khách hàng
             </Typography>
@@ -49,8 +61,22 @@ function Footer() {
               STEM không chỉ là cửa hàng trực tuyến mà còn là mạng xã hội
             </Typography>
           </Grid>
-          <Grid xs={3}>
-            <Box>
+          <Grid xs={12} md={4} lg={3}>
+            <Box sx={{ mt: 2, ml: 1 }}>
+              <Typography variant="h6" align="left">
+                Thông tin liên hệ:
+              </Typography>
+              <Typography variant="subtitle1" align="left">
+                - SĐT/Fax: 096 9819 201
+              </Typography>
+              <Typography variant="subtitle1" align="left">
+                - Email: stem.store@gmail.com
+              </Typography>
+              <Typography variant="subtitle1" align="left">
+                - Địa chỉ: Đại học GTVT TPHCM cở sở 3
+              </Typography>
+            </Box>
+            <Box sx={{ mt: 2, ml: 1 }}>
               <Typography variant="h6" align="left">
                 Mạng xã hội
               </Typography>
@@ -71,20 +97,6 @@ function Footer() {
                   <YouTubeIcon />
                 </Link>
               </Box>
-            </Box>
-            <Box sx={{ mt: 2 }}>
-              <Typography variant="h6" align="left">
-                Thông tin liên hệ:
-              </Typography>
-              <Typography variant="subtitle1" align="left">
-                - SĐT/Fax: 096 9819 201
-              </Typography>
-              <Typography variant="subtitle1" align="left">
-                - Email: stem.store@gmail.com
-              </Typography>
-              <Typography variant="subtitle1" align="left">
-                - Địa chỉ: Đại học GTVT TPHCM cở sở 3
-              </Typography>
             </Box>
           </Grid>
         </Grid>

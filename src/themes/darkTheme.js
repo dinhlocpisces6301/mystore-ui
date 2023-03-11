@@ -26,6 +26,9 @@ const dark = createTheme({
             backgroundColor: 'rgba(23, 26, 33, 1)',
           },
         },
+        svg: {
+          color: '#fff',
+        },
       }),
     },
   },

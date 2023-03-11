@@ -35,3 +35,25 @@ export function currencyFormat(value) {
 
   return formatter.format(value);
 }
+
+export function randomColor() {
+  const color = [
+    '#F7C8E0',
+    '#DFFFD8',
+    '#B4E4FF',
+    '#FFACAC',
+    '#FFBFA9',
+    '#FBFFB1',
+    '#E5D1FA',
+    '#CDE990',
+    '#FDD36A',
+    '#7DB9B6',
+    '#E7B10A',
+    '#E96479',
+    '#B5F1CC',
+    '#AA77FF',
+    '#FF5D5D',
+  ];
+  var n = color.length;
+  return color[Math.floor(Math.random() * n)];
+}

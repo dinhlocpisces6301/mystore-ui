@@ -1,8 +1,8 @@
 import classNames from 'classnames/bind';
 import { Button, Tooltip, Box, Stack, IconButton, AppBar, Avatar } from '@mui/material';
+import Grid from '@mui/material/Unstable_Grid2';
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import Grid from '@mui/material/Unstable_Grid2';
 import { Link, NavLink } from 'react-router-dom';
 
 import config from '~/config';
@@ -13,8 +13,8 @@ const cx = classNames.bind(styles);
 
 function Header() {
   return (
-    <AppBar position="sticky" className={cx('wrapper')}>
-      <Grid container className={cx('container')}>
+    <AppBar position="sticky" sx={{ background: '#171a21' }}>
+      <Grid container sx={{ height: '80px' }}>
         <Grid
           xs={12}
           lg={3}
@@ -58,20 +58,17 @@ function Header() {
             <AccountCircleIcon />
           </IconButton>
         </Grid>
-        <Grid xs={0} lg={6}>
-          <Stack
-            direction="row"
-            spacing={2}
-            justifyContent="center"
-            alignItems="center"
-            className={cx('navbar-items')}
-            sx={{
-              display: {
-                xs: 'none',
-                lg: 'flex',
-              },
-            }}
-          >
+        <Grid
+          xs={0}
+          lg={6}
+          sx={{
+            display: {
+              xs: 'none',
+              lg: 'flex',
+            },
+          }}
+        >
+          <Stack direction="row" spacing={2} justifyContent="center" alignItems="center" className={cx('navbar-items')}>
             <NavLink to={config.routes.home} className={({ isActive }) => (isActive ? cx('active') : undefined)}>
               Trang chủ
             </NavLink>
@@ -89,7 +86,16 @@ function Header() {
             </NavLink>
           </Stack>
         </Grid>
-        <Grid xs={0} lg={3}>
+        <Grid
+          xs={0}
+          lg={3}
+          sx={{
+            display: {
+              xs: 'none',
+              lg: 'flex',
+            },
+          }}
+        >
           {false ? (
             <Box
               sx={{

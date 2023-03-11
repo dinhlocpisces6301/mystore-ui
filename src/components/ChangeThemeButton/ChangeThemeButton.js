@@ -28,23 +28,24 @@ function ChangeThemeButton() {
         sx={{
           padding: '0',
           minWidth: '0px',
-          height: '40px',
-          width: '40px',
+          height: '39px',
+          width: '39px',
           borderRadius: '50%',
+          border: '1px solid #ccc',
           display: { xs: 'none', md: 'none', lg: 'flex' },
           position: 'fixed',
           right: '24px',
           bottom: '24px',
           'z-index': '1',
           cursor: 'pointer',
-          backgroundColor: isDarkMode ? 'rgba(0, 0, 0, 0.75)' : 'rgba(229, 175, 35, 0.75)',
+          backgroundColor: isDarkMode ? 'rgba(0, 0, 0, 0.75)' : 'rgba(236, 242, 255, 0.75)',
         }}
         onClick={() => handleClick()}
       >
         {isDarkMode ? (
           <DarkModeIcon sx={{ color: 'rgba(255, 237, 0, 0.95)' }} />
         ) : (
-          <LightModeIcon sx={{ color: 'rgba(255, 0, 0, 0.95)' }} />
+          <LightModeIcon sx={{ color: 'rgba(223, 46, 56, 0.95)' }} />
         )}
       </Button>
     </>

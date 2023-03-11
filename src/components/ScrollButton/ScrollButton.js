@@ -33,7 +33,7 @@ function ScrollButton() {
           display: visible ? 'flex' : 'none',
           position: 'fixed',
           right: '24px',
-          bottom: '65px',
+          bottom: '66px',
           'z-index': '1',
           cursor: 'pointer',
           backgroundColor: 'rgba(60, 62, 67, 0.95)',

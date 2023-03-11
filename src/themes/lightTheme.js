@@ -8,6 +8,30 @@ const light = createTheme({
     h6: {
       fontSize: '16px',
     },
+    subtitle1: {
+      fontSize: '16px',
+    },
+    subtitle2: {
+      fontSize: '12px',
+    },
+    title: {
+      fontSize: '32px',
+      textAlign: 'left',
+      fontWeight: 'bold',
+      color: '#000',
+    },
+    'orign-price': {
+      fontSize: '16px',
+      textAlign: 'left',
+      textDecoration: 'line-through',
+      fontWeight: 'bold',
+      fontStyle: 'italic',
+    },
+    price: {
+      fontSize: '24px',
+      textAlign: 'left',
+      fontWeight: 'bold',
+    },
   },
   breakpoints: {
     values: {
@@ -34,6 +58,10 @@ const light = createTheme({
             borderRadius: 0,
             backgroundColor: 'rgba(168, 168, 168, 0)',
           },
+        },
+        a: {
+          textDecoration: 'none',
+          color: '#000',
         },
       }),
     },
