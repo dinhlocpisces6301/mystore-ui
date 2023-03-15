@@ -7,7 +7,6 @@ import { Link, NavLink } from 'react-router-dom';
 
 import config from '~/config';
 import images from '~/assets/images';
-
 import styles from './Header.module.scss';
 const cx = classNames.bind(styles);
 
@@ -59,7 +58,6 @@ function Header() {
           </IconButton>
         </Grid>
         <Grid
-          xs={0}
           lg={6}
           sx={{
             display: {
@@ -87,7 +85,6 @@ function Header() {
           </Stack>
         </Grid>
         <Grid
-          xs={0}
           lg={3}
           sx={{
             display: {

@@ -21,6 +21,14 @@ function Footer() {
     year === 2022 ? setCopyRight('Copyright © ' + year) : setCopyRight('Copyright © 2022 - ' + year);
   }, [copyRight]);
 
+  const socialList = [
+    { id: '0', link: 'https://www.facebook.com/', icon: <FacebookIcon /> },
+    { id: '1', link: 'https://www.instagram.com/', icon: <InstagramIcon /> },
+    { id: '2', link: 'https://twitter.com', icon: <TwitterIcon /> },
+    { id: '3', link: 'https://www.reddit.com/', icon: <RedditIcon /> },
+    { id: '4', link: 'https://www.youtube.com/', icon: <YouTubeIcon /> },
+  ];
+
   return (
     <>
       <Grid container className={cx('wrapper')}>
@@ -66,13 +74,13 @@ function Footer() {
               <Typography variant="h6" align="left">
                 Thông tin liên hệ:
               </Typography>
-              <Typography variant="subtitle1" align="left">
+              <Typography variant="contactText" align="left">
                 - SĐT/Fax: 096 9819 201
               </Typography>
-              <Typography variant="subtitle1" align="left">
+              <Typography variant="contactText" align="left">
                 - Email: stem.store@gmail.com
               </Typography>
-              <Typography variant="subtitle1" align="left">
+              <Typography variant="contactText" align="left">
                 - Địa chỉ: Đại học GTVT TPHCM cở sở 3
               </Typography>
             </Box>
@@ -81,28 +89,18 @@ function Footer() {
                 Mạng xã hội
               </Typography>
               <Box className={cx('social-container')}>
-                <Link href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
-                  <FacebookIcon />
-                </Link>
-                <Link href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
-                  <InstagramIcon />
-                </Link>
-                <Link href="https://twitter.com/" target="_blank" rel="noopener noreferrer">
-                  <TwitterIcon />
-                </Link>
-                <Link href="https://www.reddit.com/" target="_blank" rel="noopener noreferrer">
-                  <RedditIcon />
-                </Link>
-                <Link href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">
-                  <YouTubeIcon />
-                </Link>
+                {socialList.map((item) => (
+                  <Link target="_blank" rel="noopener noreferrer" href={item.link} key={item.id}>
+                    {item.icon}
+                  </Link>
+                ))}
               </Box>
             </Box>
           </Grid>
         </Grid>
         <Grid xs={12} lg={8} lgOffset={2}>
           <Divider />
-          <Typography variant="subtitle2" textAlign={'center'}>
+          <Typography variant="copyright" textAlign={'center'}>
             {copyRight} Game Store. All Rights Reserved
           </Typography>
         </Grid>

@@ -1,11 +1,11 @@
-import { Box, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@mui/styles';
 import Grid from '@mui/material/Unstable_Grid2';
-import SliderButton from './SliderButton';
+import { Box, Typography } from '@mui/material';
 import { currencyFormat, randomColor } from '~/utils';
-import { Link } from 'react-router-dom';
 import GenreList from '~/components/GenreList/';
+import SliderButton from './SliderButton';
 
 function Slider() {
   const classes = useStyles();
@@ -52,10 +52,10 @@ function Slider() {
         },
       }}
     >
-      <Grid container xs={12} className={classes['content']}>
-        <Grid container xs={12} md={8} sx={{ height: '400px' }}>
+      <Grid container xs={12} spacingX={2}>
+        <Grid xs={12} md={8} sx={{ height: { xs: '320px', md: '360px', lg: '480px' } }}>
           <Link to={'/'} className={classes.img}>
-            <img src={process.env.PUBLIC_URL + '/images/tmp.jpg'} alt="" className={classes.img} />
+            <img src={process.env.PUBLIC_URL + '/images/tmp2.jpg'} alt="" className={classes.img} />
           </Link>
         </Grid>
         <Grid
@@ -69,7 +69,7 @@ function Slider() {
             },
           }}
         >
-          <Typography variant="title" sx={{ m: 4 }}>
+          <Typography variant="title">
             <Link to={'/'}>Genshin Impact</Link>
           </Typography>
           <Typography variant="orign-price" sx={{ mx: 4 }}>
@@ -106,7 +106,6 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
     borderRadius: '19px',
   },
-  content: {},
   'dot-container': {
     height: '20px',
     display: 'flex',
@@ -128,12 +127,12 @@ const useStyles = makeStyles((theme) => ({
   },
   img: {
     width: '100%',
-    height: '480px',
+    height: '100%',
     objectFit: 'cover',
     borderRadius: '19px 0 0 19px',
   },
   'detail-container': {
-    height: '480px',
+    height: '100%',
     flexDirection: 'column',
     justifyContent: 'flex-end',
   },

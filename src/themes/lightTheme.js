@@ -5,20 +5,36 @@ const light = createTheme({
     mode: 'light',
   },
   typography: {
+    h5: {
+      fontWeight: 'bold',
+    },
     h6: {
       fontSize: '16px',
     },
-    subtitle1: {
+    contactText: {
       fontSize: '16px',
+      display: 'block',
     },
-    subtitle2: {
+    copyright: {
       fontSize: '12px',
+      lineHeight: '16px',
+      display: 'block',
     },
     title: {
       fontSize: '32px',
       textAlign: 'left',
       fontWeight: 'bold',
       color: '#000',
+      margin: '32px',
+      display: 'block',
+    },
+    subTitle: {
+      fontSize: '20px',
+      textAlign: 'center',
+      fontWeight: 'bold',
+      color: '#000',
+      margin: '0px',
+      display: 'block',
     },
     'orign-price': {
       fontSize: '16px',
@@ -26,11 +42,15 @@ const light = createTheme({
       textDecoration: 'line-through',
       fontWeight: 'bold',
       fontStyle: 'italic',
+      color: '#4c4c4c',
+      display: 'block',
     },
     price: {
-      fontSize: '24px',
+      fontSize: '16px',
       textAlign: 'left',
       fontWeight: 'bold',
+      color: '#000',
+      display: 'block',
     },
   },
   breakpoints: {
