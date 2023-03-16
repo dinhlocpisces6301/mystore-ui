@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import { Button, Tooltip, Box, Stack, IconButton, AppBar, Avatar } from '@mui/material';
+import { Button, Box, Stack, IconButton, AppBar, Avatar } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -13,7 +13,7 @@ const cx = classNames.bind(styles);
 function Header() {
   return (
     <AppBar position="sticky" sx={{ background: '#171a21' }}>
-      <Grid container sx={{ height: '80px' }}>
+      <Grid container className={cx('wrapper')}>
         <Grid
           xs={12}
           lg={3}
@@ -25,7 +25,7 @@ function Header() {
           }}
         >
           <IconButton
-            className={cx('responsive-button')}
+            className={cx('responsive-btn')}
             sx={{
               display: {
                 lg: 'none',
@@ -47,7 +47,7 @@ function Header() {
             </Link>
           </Box>
           <IconButton
-            className={cx('responsive-button')}
+            className={cx('responsive-btn')}
             sx={{
               display: {
                 lg: 'none',
@@ -62,11 +62,12 @@ function Header() {
           sx={{
             display: {
               xs: 'none',
+              md: 'none',
               lg: 'flex',
             },
           }}
         >
-          <Stack direction="row" spacing={2} justifyContent="center" alignItems="center" className={cx('navbar-items')}>
+          <Stack direction="row" justifyContent="center" alignItems="center" spacing={2} className={cx('navbar-items')}>
             <NavLink to={config.routes.home} className={({ isActive }) => (isActive ? cx('active') : undefined)}>
               Trang chủ
             </NavLink>
@@ -93,43 +94,41 @@ function Header() {
             },
           }}
         >
-          {false ? (
+          {true ? (
             <Box
+              className={cx('action')}
               sx={{
                 display: {
                   xs: 'none',
                   lg: 'flex',
                 },
-                justifyContent: 'center',
-                alignItems: 'center',
-                height: '100%',
               }}
             >
-              <Avatar alt="avatar" src={process.env.PUBLIC_URL + '/images/avatar-placeholder.jpg'}></Avatar>
+              <Button variant="contained" color="success" className={cx('action-btn')}>
+                {`Giỏ hàng (${0})`}
+              </Button>
+              <Button variant="contained" color="info" className={cx('action-btn')}>
+                {`Wishlist (${1})`}
+              </Button>
+              <Avatar alt="avatar" src={process.env.PUBLIC_URL + '/images/avatar-placeholder.jpg'} />
             </Box>
           ) : (
             <Box
+              className={cx('action')}
               sx={{
                 display: {
                   xs: 'none',
                   lg: 'flex',
                 },
-                justifyContent: 'center',
-                alignItems: 'center',
-                height: '100%',
               }}
             >
-              <Tooltip title="Đăng ký">
-                <Button variant="contained" color="primary" sx={{ mr: 1 }}>
-                  Đăng ký
-                </Button>
-              </Tooltip>
+              <Button variant="contained" color="primary" className={cx('action-btn')}>
+                Đăng ký
+              </Button>
 
-              <Tooltip title="Đăng nhập">
-                <Button variant="contained" color="error">
-                  Đăng nhập
-                </Button>
-              </Tooltip>
+              <Button variant="contained" color="error" className={cx('action-btn')}>
+                Đăng nhập
+              </Button>
             </Box>
           )}
         </Grid>

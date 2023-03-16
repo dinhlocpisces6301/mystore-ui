@@ -36,12 +36,18 @@ const light = createTheme({
       margin: '0px',
       display: 'block',
     },
-    'orign-price': {
+    company: {
       fontSize: '16px',
+      textAlign: 'left',
+      fontWeight: 'bold',
+      color: 'blue',
+      display: 'block',
+    },
+    'orign-price': {
+      fontSize: '14px',
       textAlign: 'left',
       textDecoration: 'line-through',
       fontWeight: 'bold',
-      fontStyle: 'italic',
       color: '#4c4c4c',
       display: 'block',
     },

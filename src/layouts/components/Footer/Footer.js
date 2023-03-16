@@ -38,7 +38,7 @@ function Footer() {
           lg={10}
           lgOffset={1}
           className={cx('container')}
-          sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row', lg: 'row' } }}
+          sx={{ flexDirection: { xs: 'column', md: 'row', lg: 'row' } }}
         >
           <Grid
             lg={3}

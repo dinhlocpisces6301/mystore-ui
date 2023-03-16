@@ -8,12 +8,12 @@ function ProductList({ title = 'Product List' }) {
     <>
       <Grid container xs={12} disableEqualOverflow>
         <Grid xs={12} xsOffset={1} mdOffset={0} lgOffset={0}>
-          <Typography variant="h5" align="left">
+          <Typography variant="h5" align="left" sx={{ ml: 2 }}>
             {title}
           </Typography>
         </Grid>
 
-        <Grid container xs={12} spacing={2} rowSpacing={4}>
+        <Grid container xs={12} spacing={8} rowSpacing={4}>
           {Array.from({ length: 8 }).map((item, index) => {
             return <Product key={index} />;
           })}

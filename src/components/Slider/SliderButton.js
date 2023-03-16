@@ -1,23 +1,19 @@
 import PropTypes from 'prop-types';
-
+import classNames from 'classnames/bind';
 import { Button } from '@mui/material';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import { makeStyles } from '@mui/styles';
-function SliderButton({ direction = 'left', moveSlide }) {
-  const classes = useStyles();
 
+import styles from './Slider.module.scss';
+const cx = classNames.bind(styles);
+
+function SliderButton({ direction = 'left', moveSlide }) {
   return (
     <>
       <Button
         onClick={() => moveSlide()}
-        className={direction === 'right' ? classes['next-btn'] : classes['prev-btn']}
+        className={direction === 'right' ? cx('slider-btn', 'next-btn') : cx('slider-btn', 'prev-btn')}
         sx={{
-          minWidth: '0',
-          width: '45px',
-          height: '96px',
-          position: 'absolute',
-          top: '50%',
           left:
             direction === 'right'
               ? 'none'
@@ -34,15 +30,6 @@ function SliderButton({ direction = 'left', moveSlide }) {
                   lg: '-48px',
                 }
               : 'none',
-          transform: 'translateY(-60%)',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          cursor: 'pointer',
-          svg: {
-            color: '#000',
-            fontSize: '48px',
-          },
         }}
       >
         {direction === 'right' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
@@ -50,21 +37,6 @@ function SliderButton({ direction = 'left', moveSlide }) {
     </>
   );
 }
-
-const useStyles = makeStyles((theme) => ({
-  'prev-btn': {
-    background: 'linear-gradient(to right, rgba(0, 0, 0, 0.3) 5%, rgba(0, 0, 0, 0) 95%)',
-    '&:hover': {
-      background: 'linear-gradient(to right, rgba(171, 218, 244, 1) 5%, rgba(171, 218, 244, 0) 95%)',
-    },
-  },
-  'next-btn': {
-    background: 'linear-gradient(to right, rgba(0, 0, 0, 0) 5%, rgba(0, 0, 0, 0.3) 95%)',
-    '&:hover': {
-      background: 'linear-gradient(to right, rgba(171, 218, 244, 0) 5%, rgba(171, 218, 244, 1) 95%)',
-    },
-  },
-}));
 
 SliderButton.propTypes = {
   moveSlide: PropTypes.func,
