@@ -3,7 +3,7 @@ import { Button, Box, Stack, IconButton, AppBar, Avatar } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 
 import config from '~/config';
 import images from '~/assets/images';
@@ -11,8 +11,9 @@ import styles from './Header.module.scss';
 const cx = classNames.bind(styles);
 
 function Header() {
+  const navigate = useNavigate();
   return (
-    <AppBar position="sticky" sx={{ background: '#171a21' }}>
+    <AppBar position="sticky" sx={{ background: '#cfe9f3' }}>
       <Grid container className={cx('wrapper')}>
         <Grid
           xs={12}
@@ -94,7 +95,7 @@ function Header() {
             },
           }}
         >
-          {true ? (
+          {false ? (
             <Box
               className={cx('action')}
               sx={{
@@ -122,11 +123,21 @@ function Header() {
                 },
               }}
             >
-              <Button variant="contained" color="primary" className={cx('action-btn')}>
+              <Button
+                variant="contained"
+                color="primary"
+                className={cx('action-btn')}
+                onClick={() => navigate(config.routes.signup, { replace: true })}
+              >
                 Đăng ký
               </Button>
 
-              <Button variant="contained" color="error" className={cx('action-btn')}>
+              <Button
+                variant="contained"
+                color="error"
+                className={cx('action-btn')}
+                onClick={() => navigate(config.routes.login, { replace: true })}
+              >
                 Đăng nhập
               </Button>
             </Box>

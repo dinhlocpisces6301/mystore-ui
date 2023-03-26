@@ -13,7 +13,7 @@ function ProductCollection() {
           <Typography variant="h5">{`Bán chạy`}</Typography>
           <Button variant="outlined">Xem thêm</Button>
         </Grid>
-        {Array.from({ length: 5 }).map((item, index) => (
+        {Array.from({ length: 3 }).map((item, index) => (
           <Product key={index} />
         ))}
       </Grid>
@@ -25,7 +25,7 @@ function ProductCollection() {
           <Typography variant="h5">{`Mới ra mắt`}</Typography>
           <Button variant="outlined">Xem thêm</Button>
         </Grid>
-        {Array.from({ length: 5 }).map((item, index) => (
+        {Array.from({ length: 3 }).map((item, index) => (
           <Product key={index} />
         ))}
       </Grid>
@@ -37,7 +37,7 @@ function ProductCollection() {
           <Typography variant="h5">{`Yêu thích`}</Typography>
           <Button variant="outlined">Xem thêm</Button>
         </Grid>
-        {Array.from({ length: 5 }).map((item, index) => (
+        {Array.from({ length: 3 }).map((item, index) => (
           <Product key={index} />
         ))}
       </Grid>

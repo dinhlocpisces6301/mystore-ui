@@ -1,5 +1,14 @@
+import ProfileCard from '~/components/ProfileCard';
+import { data } from './data';
+
 function About() {
-  return <h1>This About Page</h1>;
+  return (
+    <>
+      {data.map((item, index) => {
+        return <ProfileCard data={item} key={index} />;
+      })}
+    </>
+  );
 }
 
 export default About;

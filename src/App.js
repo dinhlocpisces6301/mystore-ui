@@ -1,14 +1,17 @@
 import { Fragment, useEffect, useState } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
 
-import { dark, light } from '~/themes';
-import { publicRoutes } from '~/routes';
-import DefaultLayout from '~/layouts';
 import { scrollToPosition } from './utils';
+import { dark, light } from '~/themes';
+import DefaultLayout, { HeaderOnly } from '~/layouts';
+import { authRoutes, publicRoutes } from '~/routes';
 import ScrollButton from './components/ScrollButton';
+// eslint-disable-next-line no-unused-vars
 import ChangeThemeButton from './components/ChangeThemeButton';
+import config from './config';
+
 function App() {
   const [isDarkMode] = useState(false);
 
@@ -21,7 +24,7 @@ function App() {
     <ThemeProvider theme={isDarkMode ? dark : light}>
       <CssBaseline />
       <ScrollButton />
-      <ChangeThemeButton />
+      {/* <ChangeThemeButton /> */}
       <Routes>
         {publicRoutes.map((route, index) => {
           const Page = route.component;
@@ -41,6 +44,27 @@ function App() {
                 <Layout>
                   <Page />
                 </Layout>
+              }
+            />
+          );
+        })}
+        {authRoutes.map((route, index) => {
+          const Page = route.component;
+          const isLoggedIn = false;
+          let Layout = HeaderOnly;
+          // Login rồi không vào trang Login, Sign Up, Forget Password được nữa
+          return (
+            <Route
+              key={index}
+              path={route.path}
+              element={
+                isLoggedIn ? (
+                  <Navigate to={config.routes.home} replace={true} />
+                ) : (
+                  <Layout>
+                    <Page />
+                  </Layout>
+                )
               }
             />
           );

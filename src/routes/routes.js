@@ -14,12 +14,12 @@ import Community from '~/pages/Community';
 // import Product from '~/pages/Product';
 // import Products from '~/pages/Products';
 // import Search from '~/pages/Search';
-// import Login from '~/pages/Login';
-// import SignUp from '~/pages/SignUp';
-// import ForgetPassword from '~/pages/ForgetPassword';
 // import CartPage from '~/pages/CartPage';
 // import WishListPage from '~/pages/WishListPage';
 // import CheckoutPage from '~/pages/CheckoutPage';
+import Login from '~/pages/Login';
+import Register from '~/pages/Register';
+import ForgetPassword from '~/pages/ForgetPassword';
 
 // Public routes
 const publicRoutes = [
@@ -52,9 +52,9 @@ const privateRoutes = [
 
 // Auth routes
 const authRoutes = [
-  // { path: config.routes.login, component: Login },
-  // { path: config.routes.signup, component: SignUp },
-  // { path: config.routes.forgetPassword, component: ForgetPassword },
+  { path: config.routes.login, component: Login },
+  { path: config.routes.signup, component: Register },
+  { path: config.routes.forgetPassword, component: ForgetPassword },
 ];
 
 export { publicRoutes, privateRoutes, authRoutes };

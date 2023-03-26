@@ -1,7 +1,7 @@
 import { Chip } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-function GenreItem({ label = 'Genre', size = 'medium', clickable = false }) {
+function GenreItem({ label = 'Genre', size = 'small', clickable = false }) {
   const navigate = useNavigate();
   return (
     <Chip

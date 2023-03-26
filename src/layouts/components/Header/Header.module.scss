@@ -20,7 +20,7 @@
   a {
     display: block;
     line-height: 76px;
-    color: #fff;
+    color: #000;
     text-decoration: none;
     text-transform: uppercase;
     font-weight: 500;
@@ -30,7 +30,7 @@
     border-right: 8px solid transparent;
     border-left: 8px solid transparent;
     &:hover {
-      background-color: #3a3b3c;
+      background-color: #aad4ff;
     }
   }
 }
@@ -53,9 +53,10 @@
 .responsive-btn {
   height: 80px;
   width: 60px;
-
+  min-width: 0;
   svg {
-    color: #fff;
+    color: #000;
     font-size: 2rem;
+    border-radius: 0%;
   }
 }

@@ -42,6 +42,48 @@ function Slider() {
     setSlideIndex(index);
   };
 
+  const productList = [
+    {
+      id: 1,
+      name: 'Genshin Impact',
+      publisher: 'Mihoyo',
+      origin_price: 200000,
+      price: 180000,
+      img: process.env.PUBLIC_URL + '/images/tmp.jpg',
+    },
+    {
+      id: 2,
+      name: 'Grand Thieves V',
+      publisher: 'Publisher 1',
+      origin_price: 1100000,
+      price: 275000,
+      img: process.env.PUBLIC_URL + '/images/tmp1.jpg',
+    },
+    {
+      id: 3,
+      name: 'Subnautica',
+      publisher: 'Publisher 2',
+      origin_price: 250000,
+      price: 250000,
+      img: process.env.PUBLIC_URL + '/images/tmp2.jpg',
+    },
+    {
+      id: 4,
+      name: 'Elden Ring',
+      publisher: 'Publisher 3',
+      origin_price: 100000,
+      price: 330000,
+      img: process.env.PUBLIC_URL + '/images/tmp.jpg',
+    },
+    {
+      id: 5,
+      name: 'Windows 11',
+      publisher: 'Microsoft',
+      origin_price: 0,
+      price: 0,
+      img: process.env.PUBLIC_URL + '/images/tmp1.jpg',
+    },
+  ];
   return (
     <Grid
       container
@@ -57,38 +99,50 @@ function Slider() {
     >
       {/* Slide begin */}
       <>
-        <Grid container xs={12} spacingX={2}>
-          <Grid xs={12} md={8} sx={{ height: { xs: '320px', md: '360px', lg: '480px' } }}>
-            <Link to={'/'}>
-              <img src={process.env.PUBLIC_URL + '/images/tmp2.jpg'} alt="" className={cx('slider-img')} />
-            </Link>
-          </Grid>
-          <Grid
-            md={4}
-            className={cx('detail-container')}
-            sx={{
-              display: {
-                xs: 'none',
-                md: 'flex',
-                lg: 'flex',
-              },
-            }}
-          >
-            <Typography variant="title">
-              <Link to={'/'}>Genshin Impact</Link>
-            </Typography>
-            <Typography variant="company" sx={{ mx: 4 }}>
-              Mihoyo
-            </Typography>
-            <Typography variant="orign-price" sx={{ mx: 4 }}>
-              {currencyFormat(200000)}
-            </Typography>
-            <Typography variant="price" sx={{ mx: 4 }}>
-              {currencyFormat(200000)}
-            </Typography>
-            <GenreList />
-          </Grid>
-        </Grid>
+        {productList?.map((product, index) => {
+          return (
+            <Grid
+              container
+              xs={12}
+              spacingX={2}
+              className={slideIndex === index + 1 ? cx('slide', 'aim') : cx('slide')}
+              key={product.id}
+            >
+              <Grid xs={12} md={8} sx={{ height: { xs: '320px', md: '360px', lg: '480px' } }}>
+                <Link to={'/'}>
+                  <img src={product.img} alt="" className={cx('slider-img')} />
+                </Link>
+              </Grid>
+              <Grid
+                md={4}
+                className={cx('detail-container')}
+                sx={{
+                  display: {
+                    xs: 'none',
+                    md: 'flex',
+                    lg: 'flex',
+                  },
+                }}
+              >
+                <Typography variant="title">
+                  <Link to={'/'}>{product.name}</Link>
+                </Typography>
+                <Typography variant="company" sx={{ mx: 4 }}>
+                  {`Nhà phát hành: ${product.publisher}`}
+                </Typography>
+                {product.origin_price !== product.price && (
+                  <Typography variant="orign-price" sx={{ mx: 4 }}>
+                    {currencyFormat(product.origin_price)}
+                  </Typography>
+                )}
+                <Typography variant="price" sx={{ mx: 4 }}>
+                  {product.price > 0 ? currencyFormat(product.price) : 'Free'}
+                </Typography>
+                <GenreList />
+              </Grid>
+            </Grid>
+          );
+        })}
       </>
       {/* slide end */}
 

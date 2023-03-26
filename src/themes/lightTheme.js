@@ -37,11 +37,11 @@ const light = createTheme({
       display: 'block',
     },
     company: {
-      fontSize: '16px',
+      fontSize: '18px',
       textAlign: 'left',
       fontWeight: 'bold',
-      color: 'blue',
       display: 'block',
+      color: 'rgba(0,0,0,0.65)',
     },
     'orign-price': {
       fontSize: '14px',
@@ -52,7 +52,7 @@ const light = createTheme({
       display: 'block',
     },
     price: {
-      fontSize: '16px',
+      fontSize: '18px',
       textAlign: 'left',
       fontWeight: 'bold',
       color: '#000',
