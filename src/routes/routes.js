@@ -22,6 +22,7 @@ import WishList from '~/pages/WishList';
 import Login from '~/pages/Login';
 import Register from '~/pages/Register';
 import ForgetPassword from '~/pages/ForgetPassword';
+import ConfirmCode from '~/pages/ConfirmCode';
 
 // Public routes
 const publicRoutes = [
@@ -59,6 +60,7 @@ const authRoutes = [
   { path: config.routes.login, component: Login },
   { path: config.routes.signup, component: Register },
   { path: config.routes.forgetPassword, component: ForgetPassword },
+  { path: config.routes.confirm, component: ConfirmCode },
 ];
 
 export { publicRoutes, privateRoutes, authRoutes };

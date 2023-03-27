@@ -54,6 +54,32 @@ export const forgotPassword = async (account) => {
   }
 };
 
+export const getConfirmCode = async (username) => {
+  try {
+    const res = await httpRequest.post('Users/sendemail', username);
+    return res.data;
+  } catch (error) {
+    if (error.code === 'ERR_NETWORK') {
+      return { message: error.message, isSuccess: false };
+    }
+    console.log(error);
+    return { message: error.response.data.message, isSuccess: false };
+  }
+};
+
+export const confirmCode = async (account) => {
+  try {
+    const res = await httpRequest.post('Users/confirm', account);
+    return res.data;
+  } catch (error) {
+    if (error.code === 'ERR_NETWORK') {
+      return { message: error.message, isSuccess: false };
+    }
+    console.log(error);
+    return { message: error.response.data.message, isSuccess: false };
+  }
+};
+
 export const changeAvatar = async (img) => {
   try {
     const jwt_token = Cookies.get('jwt');

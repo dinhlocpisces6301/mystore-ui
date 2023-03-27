@@ -4,49 +4,69 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Box, FormControl, TextField, Typography, Button } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
 
-import * as authServices from '~/services/authServices';
+import * as userServices from '~/services/userServices';
 import config from '~/config';
 import { useNotification } from '~/hooks';
 import ToastPortal from '~/components/ToastPortal/ToastPortal';
-import LoadingSpinner from '~/components/LoadingSpinner';
+import LoadingSpinner from '~/components/LoadingSpinner/';
 
-import styles from './RegisterForm.module.scss';
+import styles from './ConfirmCodeForm.module.scss';
 const cx = classNames.bind(styles);
 
-function RegisterForm() {
+function ConfirmCodeForm() {
   const navigate = useNavigate();
   const [usernameInput, setUsernameInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
-  const [rePasswordInput, setRePasswordInput] = useState('');
-  const [emailInput, setEmailInput] = useState('');
+  const [confirmCodeInput, setConfirmCodeInput] = useState('');
   const [loading, setLoading] = useState(false);
-
+  const [loading2, setLoading2] = useState(false);
   const toastRef = useRef();
   const Notify = useNotification(toastRef);
 
-  const register = async () => {
+  const getConfirmCode = async () => {
+    setLoading2(true);
+    const response = await userServices.getConfirmCode({
+      userName: usernameInput,
+    });
+    if (response.isSuccess === false) {
+      setLoading2(false);
+      Notify(response.message, 'error');
+    }
+    if (response.isSuccess === true) {
+      setLoading2(false);
+      Notify('Mã xác nhận đã được gửi đến Email của bạn', 'success');
+    }
+  };
+  const handleGetConfirmCode = () => {
+    var msg = '';
+    if (usernameInput === '') {
+      msg = 'Vui lòng nhập Tên tài khoản';
+      Notify(msg, 'warning');
+      return;
+    }
+    getConfirmCode();
+  };
+
+  const confirmAccount = async () => {
     setLoading(true);
-    // Make Api call
-    const response = await authServices.register({
-      email: emailInput,
+    const response = await userServices.confirmCode({
       userName: usernameInput,
       password: passwordInput,
-      confirmPassword: rePasswordInput,
+      confirmCode: confirmCodeInput,
     });
     if (response.isSuccess === false) {
       setLoading(false);
       Notify(response.message, 'error');
     }
     if (response.isSuccess === true) {
-      Notify('Đăng ký thành công, vui lòng thực hiện bước xác nhận', 'success');
+      Notify('Thành công, bạn có thể đăng nhập', 'success');
       const timerId = setTimeout(() => {
         clearTimeout(timerId);
         setLoading(false);
-        navigate(config.routes.confirm, { replace: true });
+        navigate(config.routes.login, { replace: true });
       }, 3000);
     }
   };
-
   const handleClick = () => {
     var msg = '';
     if (usernameInput === '') {
@@ -67,30 +87,19 @@ function RegisterForm() {
       Notify(msg, 'warning');
       return;
     }
-    if (passwordInput !== rePasswordInput) {
-      msg = 'Mật khẩu không khớp';
+    if (confirmCodeInput === '') {
+      msg = 'Vui lòng nhập mã xác nhận';
       Notify(msg, 'warning');
       return;
     }
-    if (emailInput === '') {
-      msg = 'Vui lòng nhập Email';
-      Notify(msg, 'warning');
-      return;
-    }
-
-    var emailRegex = new RegExp(/^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/);
-    if (emailRegex.test(emailInput) === false) {
-      msg = 'Email không đúng, hãy thử lại';
-      Notify(msg, 'warning');
-      return;
-    }
-    register();
+    confirmAccount();
   };
 
   return (
     <Grid xs={12} md={6} xsOffset={0} mdOffset={3}>
       <Box className={cx('container')} component="form" noValidate autoComplete="off">
-        <Typography variant="title">Đăng ký</Typography>
+        <Typography variant="title">Xác minh tài khoản</Typography>
+        <Typography variant="subTitle">Thực hiện bước này để hoàn thành việc đăng ký </Typography>
         <FormControl>
           <TextField
             id="username"
@@ -101,16 +110,28 @@ function RegisterForm() {
             }}
           />
         </FormControl>
-        <FormControl>
-          <TextField
-            id="email"
-            label="Email"
-            value={emailInput}
-            onChange={(e) => {
-              setEmailInput(e.currentTarget.value);
-            }}
-          />
-        </FormControl>
+        <Box className={cx('confirm-code')}>
+          <FormControl>
+            <TextField
+              id="confirm-code"
+              label="Mã xác nhận"
+              value={confirmCodeInput}
+              onChange={(e) => {
+                setConfirmCodeInput(e.currentTarget.value);
+              }}
+              className={cx('confirm-code-input')}
+            />
+          </FormControl>
+          {loading2 ? (
+            <Button variant="contained" color="secondary" disabled sx={{ height: '36.5px', width: '85.02px' }}>
+              <LoadingSpinner />
+            </Button>
+          ) : (
+            <Button variant="contained" color="secondary" onClick={handleGetConfirmCode}>
+              Lấy mã
+            </Button>
+          )}
+        </Box>
         <FormControl>
           <TextField
             id="password"
@@ -122,24 +143,13 @@ function RegisterForm() {
             }}
           />
         </FormControl>
-        <FormControl>
-          <TextField
-            id="confirm-password"
-            label="Xác nhận Mật khẩu"
-            type="password"
-            value={rePasswordInput}
-            onChange={(e) => {
-              setRePasswordInput(e.currentTarget.value);
-            }}
-          />
-        </FormControl>
         {loading ? (
-          <Button variant="contained" disabled sx={{ height: '36.5px' }}>
+          <Button variant="contained" disabled sx={{ height: '36.5' }}>
             <LoadingSpinner />
           </Button>
         ) : (
           <Button variant="contained" onClick={handleClick}>
-            Đăng ký
+            Xác Nhận
           </Button>
         )}
         <Link to={config.routes.login}>Quay về đăng nhập</Link>
@@ -149,4 +159,4 @@ function RegisterForm() {
   );
 }
 
-export default RegisterForm;
+export default ConfirmCodeForm;

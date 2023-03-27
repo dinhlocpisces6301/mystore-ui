@@ -1,31 +1,85 @@
 import classNames from 'classnames/bind';
 import { useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Box, FormControl, TextField, Typography, Button } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
+import Cookies from 'js-cookie';
 
+import * as authServices from '~/services/authServices';
 import config from '~/config';
 import { useNotification } from '~/hooks';
 import ToastPortal from '~/components/ToastPortal/ToastPortal';
+import LoadingSpinner from '~/components/LoadingSpinner';
+
 import styles from './LoginForm.module.scss';
 const cx = classNames.bind(styles);
 
 function LoginForm() {
+  const navigate = useNavigate();
   const [usernameInput, setUsernameInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
   const toastRef = useRef();
-  // eslint-disable-next-line no-unused-vars
   const Notify = useNotification(toastRef);
+  const [loading, setLoading] = useState(false);
+
+  const login = async () => {
+    setLoading(true);
+    // Make Api call
+    const response = await authServices.login({
+      userName: usernameInput,
+      password: passwordInput,
+      rememberMe: false,
+    });
+
+    if (response.isSuccess === false) {
+      setLoading(false);
+      Notify(response.message, 'error');
+    }
+
+    if (response.isSuccess === true) {
+      Cookies.set('jwt', response.resultObj.token, { expires: 30 / 1440, secure: true });
+      Cookies.set('user-id', response.resultObj.userId, { expires: 30 / 1440, secure: true });
+      Notify('Đăng nhập thành công', 'success');
+      const timerId = setTimeout(() => {
+        clearTimeout(timerId);
+        setLoading(false);
+        navigate(config.routes.home, { replace: true });
+      }, 3000);
+    }
+  };
+
+  const handleClick = () => {
+    var msg = '';
+    if (usernameInput === '') {
+      msg = 'Vui lòng nhập Tên tài khoản';
+      if (passwordInput === '') {
+        msg = 'Vui lòng nhập đầy đủ thông tin';
+      }
+      Notify(msg, 'warning');
+      return;
+    }
+    if (passwordInput === '') {
+      msg = 'Mật khẩu chưa được nhập';
+      Notify(msg, 'warning');
+      return;
+    }
+    if (passwordInput.length < 6) {
+      msg = 'Mật khẩu phải ít nhất 6 ký tự';
+      Notify(msg, 'warning');
+      return;
+    }
+
+    login();
+  };
 
   return (
-    <Grid xs={12} md={6} xsOffset={0} mdOffset={3}>
+    <Grid xs={12} md={4} xsOffset={0} mdOffset={4}>
       <Box className={cx('container')} component="form" noValidate autoComplete="off">
         <Typography variant="title">Đăng nhập</Typography>
         <FormControl>
           <TextField
-            id="component-outlined"
+            id="username"
             label="Tên người dùng"
-            defaultValue=""
             value={usernameInput}
             onChange={(e) => {
               setUsernameInput(e.currentTarget.value);
@@ -34,20 +88,28 @@ function LoginForm() {
         </FormControl>
         <FormControl>
           <TextField
-            id="component-outlined"
+            id="password"
             label="Mật khẩu"
             type="password"
-            defaultValue=""
             value={passwordInput}
             onChange={(e) => {
               setPasswordInput(e.currentTarget.value);
             }}
           />
         </FormControl>
-        <Button variant="contained" color="error">
-          Đăng nhập
-        </Button>
-        <Link to={config.routes.forgetPassword}>Bạn quên mật khẩu?</Link>
+        {loading ? (
+          <>
+            <Button variant="contained" color="error" disabled sx={{ height: '36.5px' }}>
+              <LoadingSpinner />
+            </Button>
+          </>
+        ) : (
+          <Button variant="contained" color="error" onClick={handleClick}>
+            Đăng nhập
+          </Button>
+        )}
+        <Link to={config.routes.forgetPassword}>Quên Mật khẩu?</Link>
+        <Link to={config.routes.confirm}>Kích hoạt Tài khoản tại đây.</Link>
       </Box>
       <ToastPortal ref={toastRef} autoClose={true} />
     </Grid>

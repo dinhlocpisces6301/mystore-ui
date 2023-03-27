@@ -4,7 +4,6 @@ import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
 function ChangeThemeButton() {
   const theme = localStorage.getItem('theme');
-  console.log(theme);
   const [isDarkMode, setDarkMode] = useState(() => {
     if (theme === 'dark') {
       return true;
