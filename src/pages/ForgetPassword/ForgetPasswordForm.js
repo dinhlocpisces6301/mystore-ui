@@ -37,7 +37,7 @@ function ForgetPasswordForm() {
     }
     if (response.isSuccess === true) {
       setLoading2(false);
-      Notify('Mã xác nhận đã được gửi đến Email của bạn', 'success');
+      Notify('Mã xác nhận đã được gửi đến Email của bạn');
     }
   };
   const handleGetConfirmCode = () => {
@@ -63,7 +63,7 @@ function ForgetPasswordForm() {
       Notify(response.message, 'error');
     }
     if (response.isSuccess === true) {
-      Notify('Mật khẩu được đổi thành công', 'success');
+      Notify('Mật khẩu được đổi thành công');
       const timerId = setTimeout(() => {
         clearTimeout(timerId);
         setLoading(false);

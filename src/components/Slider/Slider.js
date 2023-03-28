@@ -109,7 +109,7 @@ function Slider() {
               key={product.id}
             >
               <Grid xs={12} md={8} sx={{ height: { xs: '320px', md: '360px', lg: '480px' } }}>
-                <Link to={'/product/id'}>
+                <Link to={'/product/9e8634ae-7dc7-4942-6890-08db2f8e91bc'}>
                   <img src={product.img} alt="" className={cx('slider-img')} />
                 </Link>
               </Grid>
@@ -125,13 +125,13 @@ function Slider() {
                 }}
               >
                 <Typography variant="title">
-                  <Link to={'/product/id'}>{product.name}</Link>
+                  <Link to={'/product/9e8634ae-7dc7-4942-6890-08db2f8e91bc'}>{product.name}</Link>
                 </Typography>
                 <Typography variant="company" sx={{ mx: 4 }}>
                   {`Nhà phát hành: ${product.publisher}`}
                 </Typography>
                 {product.origin_price !== product.price && (
-                  <Typography variant="orign-price" sx={{ mx: 4 }}>
+                  <Typography variant="origin-price" sx={{ mx: 4 }}>
                     {currencyFormat(product.origin_price)}
                   </Typography>
                 )}

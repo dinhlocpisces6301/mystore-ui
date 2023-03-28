@@ -1,0 +1,131 @@
+.header {
+  padding: 0;
+
+  span {
+    text-transform: uppercase;
+  }
+}
+////////////////////
+.gallery-container {
+  padding: 0;
+}
+.screen {
+  img {
+    width: 100%;
+    height: 450px;
+    display: none;
+  }
+  .focus {
+    display: block;
+  }
+}
+.gallery-items {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-top: 16px;
+
+  .focus {
+    border: 8px solid rgba(255, 0, 0, 0.5);
+  }
+  overflow-x: scroll;
+  &::-webkit-scrollbar {
+    border-radius: 0;
+    width: 8px;
+    height: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(168, 168, 168, 0.9);
+  }
+  &::-webkit-scrollbar-track {
+    border-radius: 0;
+    background-color: rgba(255, 255, 255, 0);
+  }
+}
+.gallery-item {
+  border: 8px solid transparent;
+  height: 120px;
+  width: 180px;
+  margin-right: 4px;
+  border-radius: 8px;
+  &:hover {
+    border: 8px solid rgba(255, 0, 0, 0.5);
+  }
+}
+.arrow-up {
+  position: absolute;
+  top: -16px;
+  height: 0;
+  width: 0;
+  border: 16px solid transparent;
+  border-bottom: 16px solid rgba(255, 0, 0, 0.5);
+  transform: translateX(50%);
+}
+//////////////////
+.detail-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 594px;
+}
+.detail-img {
+  height: 180px;
+  width: 320px;
+  margin-bottom: 16px;
+  img {
+    height: 180px;
+    width: 320px;
+  }
+}
+.detail-content {
+  span {
+    display: block;
+    width: 320px;
+    text-align: left;
+    font-weight: 500;
+  }
+  .title {
+    text-transform: uppercase;
+    font-size: 24px;
+  }
+}
+.detail-action {
+  display: flex;
+  flex-direction: column;
+  margin: 16px 0;
+
+  button {
+    width: 320px;
+    margin: 16px 0;
+  }
+}
+.detail-script {
+  span {
+    margin: 16px;
+    display: block;
+    text-align: left;
+  }
+}
+////////////////
+.system-requirement-container {
+  margin-bottom: 16px !important;
+}
+.requirement {
+  p {
+    margin: 16px;
+    display: block;
+    text-align: left;
+    font-size: 16px;
+
+    strong {
+      font-size: 16px;
+      font-weight: 600;
+    }
+  }
+}
+//////////////
+
+.conmment-container {
+  padding: 0;
+}

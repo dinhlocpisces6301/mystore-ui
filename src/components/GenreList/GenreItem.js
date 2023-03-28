@@ -1,7 +1,7 @@
 import { Chip } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-function GenreItem({ label = 'Genre', size = 'small', clickable = false }) {
+function GenreItem({ id = '', label = 'Genre', size = 'small', clickable = false }) {
   const navigate = useNavigate();
   return (
     <Chip
@@ -12,7 +12,7 @@ function GenreItem({ label = 'Genre', size = 'small', clickable = false }) {
       clickable={false}
       onClick={() => {
         if (clickable) {
-          navigate('/');
+          navigate(`/category/${id}`);
         }
       }}
     />

@@ -1,28 +1,70 @@
 import Grid from '@mui/material/Unstable_Grid2';
-
 import classNames from 'classnames/bind';
-import styles from './Cart.module.scss';
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/material';
+import { useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
+
+import ToastPortal from '~/components/ToastPortal';
+import { useNotification } from '~/hooks';
+import { getCart } from '~/store/reducers/cartSlice';
+import * as cartServices from '~/services/cartServices';
+import * as imageServices from '~/services/imageServices';
+import { currencyFormat } from '~/utils';
+
+import styles from './Cart.module.scss';
 const cx = classNames.bind(styles);
 
-function CartItem() {
+function CartItem({ data }) {
+  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+  const toastRef = useRef();
+  const Notify = useNotification(toastRef);
+
+  const removeItem = async () => {
+    setLoading(true);
+    const response = await cartServices.removeCart({ id: data.id });
+    if (response.isSuccess === true) {
+      Notify('Xóa thành công');
+      const timerId = setTimeout(() => {
+        clearTimeout(timerId);
+        dispatch(getCart());
+      }, 2000);
+    }
+    if (response.isSuccess === false) {
+      Notify('Xóa thất bại', 'error');
+      setLoading(false);
+    }
+  };
+
+  const handleClick = () => {
+    removeItem();
+  };
   return (
-    <Grid container xs={12} className={cx('cart-item')}>
-      <Grid xs={5}>
-        <Box className={cx('img')}>
-          <img src={process.env.PUBLIC_URL + '/images/2.jpg'} alt="" className={cx('img')} />
-        </Box>
+    <>
+      <Grid container xs={12} className={cx('cart-item')}>
+        <Grid xs={5}>
+          <Box className={cx('img')}>
+            <img src={imageServices.getImage(data.imageList[0])} alt="" className={cx('img')} />
+          </Box>
+        </Grid>
+        <Grid xs={6} className={cx('cart-item-detail')}>
+          <Typography variant="subTitle">{data.name}</Typography>
+          {data.discount > 0 && <Typography variant="origin-price">{currencyFormat(data.price)}</Typography>}
+          <Typography variant="price">{currencyFormat(data.price * (1 - data.discount / 100))}</Typography>
+        </Grid>
+        <Grid xs={1} className={cx('cart-item-btn')}>
+          {loading ? (
+            <Typography className={cx('remove-btn')}>Xóa</Typography>
+          ) : (
+            <Typography className={cx('remove-btn')} onClick={handleClick}>
+              Xóa
+            </Typography>
+          )}
+        </Grid>
       </Grid>
-      <Grid xs={6} className={cx('cart-item-detail')}>
-        <Typography variant="subTitle">Genshin Impact</Typography>
-        <Typography variant="orign-price">200.000đ</Typography>
-        <Typography variant="price">200.000đ</Typography>
-      </Grid>
-      <Grid xs={1} className={cx('cart-item-btn')}>
-        <Typography className={cx('remove-btn')}>Xóa</Typography>
-      </Grid>
-    </Grid>
+      <ToastPortal ref={toastRef} autoClose={true} />
+    </>
   );
 }
 

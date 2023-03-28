@@ -39,7 +39,7 @@ function LoginForm() {
     if (response.isSuccess === true) {
       Cookies.set('jwt', response.resultObj.token, { expires: 30 / 1440, secure: true });
       Cookies.set('user-id', response.resultObj.userId, { expires: 30 / 1440, secure: true });
-      Notify('Đăng nhập thành công', 'success');
+      Notify('Đăng nhập thành công');
       const timerId = setTimeout(() => {
         clearTimeout(timerId);
         setLoading(false);

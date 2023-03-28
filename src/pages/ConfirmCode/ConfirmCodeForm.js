@@ -34,7 +34,7 @@ function ConfirmCodeForm() {
     }
     if (response.isSuccess === true) {
       setLoading2(false);
-      Notify('Mã xác nhận đã được gửi đến Email của bạn', 'success');
+      Notify('Mã xác nhận đã được gửi đến Email của bạn');
     }
   };
   const handleGetConfirmCode = () => {
@@ -59,7 +59,7 @@ function ConfirmCodeForm() {
       Notify(response.message, 'error');
     }
     if (response.isSuccess === true) {
-      Notify('Thành công, bạn có thể đăng nhập', 'success');
+      Notify('Thành công, bạn có thể đăng nhập');
       const timerId = setTimeout(() => {
         clearTimeout(timerId);
         setLoading(false);

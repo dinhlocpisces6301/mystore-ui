@@ -38,7 +38,7 @@ function RegisterForm() {
       Notify(response.message, 'error');
     }
     if (response.isSuccess === true) {
-      Notify('Đăng ký thành công, vui lòng thực hiện bước xác nhận', 'success');
+      Notify('Đăng ký thành công, vui lòng thực hiện bước xác nhận');
       const timerId = setTimeout(() => {
         clearTimeout(timerId);
         setLoading(false);

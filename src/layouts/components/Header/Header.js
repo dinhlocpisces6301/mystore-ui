@@ -108,7 +108,7 @@ function Header() {
       }, 2000);
     };
     const handleRedirectToProfile = () => {
-      navigate(config.routes.profile, { replace: true });
+      navigate(config.routes.profile);
     };
     return (
       <Menu
@@ -126,7 +126,6 @@ function Header() {
             mt: 1.5,
             width: '200px',
             '&:before': {
-              content: '""',
               display: 'block',
               position: 'absolute',
               top: 0,
@@ -243,7 +242,7 @@ function Header() {
                 variant="contained"
                 color="success"
                 className={cx('action-btn')}
-                onClick={() => navigate(config.routes.cart, { replace: true })}
+                onClick={() => navigate(config.routes.cart)}
               >
                 {`Giỏ hàng (${cartData.length})`}
               </Button>
@@ -251,7 +250,7 @@ function Header() {
                 variant="contained"
                 color="info"
                 className={cx('action-btn')}
-                onClick={() => navigate(config.routes.wishlist, { replace: true })}
+                onClick={() => navigate(config.routes.wishlist)}
               >
                 {`Wishlist (${wishlistData.length})`}
               </Button>
@@ -280,7 +279,7 @@ function Header() {
                 variant="contained"
                 color="primary"
                 className={cx('action-btn')}
-                onClick={() => navigate(config.routes.signup, { replace: true })}
+                onClick={() => navigate(config.routes.signup)}
               >
                 Đăng ký
               </Button>
@@ -289,7 +288,7 @@ function Header() {
                 variant="contained"
                 color="error"
                 className={cx('action-btn')}
-                onClick={() => navigate(config.routes.login, { replace: true })}
+                onClick={() => navigate(config.routes.login)}
               >
                 Đăng nhập
               </Button>

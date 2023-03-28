@@ -43,7 +43,7 @@ const light = createTheme({
       display: 'block',
       color: 'rgba(0,0,0,0.65)',
     },
-    'orign-price': {
+    'origin-price': {
       fontSize: '14px',
       textAlign: 'left',
       textDecoration: 'line-through',
