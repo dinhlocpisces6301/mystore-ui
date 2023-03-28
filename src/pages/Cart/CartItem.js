@@ -9,22 +9,18 @@ const cx = classNames.bind(styles);
 function CartItem() {
   return (
     <Grid container xs={12} className={cx('cart-item')}>
-      <Grid xs={6}>
+      <Grid xs={5}>
         <Box className={cx('img')}>
-          <img src={process.env.PUBLIC_URL + '/images/tmp.jpg'} alt="" className={cx('img')} />
+          <img src={process.env.PUBLIC_URL + '/images/2.jpg'} alt="" className={cx('img')} />
         </Box>
       </Grid>
-      <Grid xs={6}>
-        <Typography variant="subTitle" align="left" marginX={4} mt={2}>
-          Genshin Impact
-        </Typography>
-        <Typography variant="orign-price" align="left" marginX={4}>
-          200.000đ
-        </Typography>
-        <Typography variant="price" align="left" marginX={4}>
-          200.000đ
-        </Typography>
-        <Typography className={cx('remove-btn')}>xóa</Typography>
+      <Grid xs={6} className={cx('cart-item-detail')}>
+        <Typography variant="subTitle">Genshin Impact</Typography>
+        <Typography variant="orign-price">200.000đ</Typography>
+        <Typography variant="price">200.000đ</Typography>
+      </Grid>
+      <Grid xs={1} className={cx('cart-item-btn')}>
+        <Typography className={cx('remove-btn')}>Xóa</Typography>
       </Grid>
     </Grid>
   );

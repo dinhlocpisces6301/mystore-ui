@@ -1,7 +1,9 @@
 .cart-container {
   overflow-y: overlay;
   height: 480px;
-  box-shadow: rgba(0, 0, 0, 0.1) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+  background: #faf7f0;
+  border: 1px solid rgb(204, 204, 204);
+
   &::-webkit-scrollbar {
     border-radius: 0;
     width: 8px;
@@ -13,46 +15,68 @@
   &::-webkit-scrollbar-track {
     border-radius: 0;
     background-color: rgba(255, 255, 255, 0);
-    margin: 8px 0;
+  }
+
+  :last-child {
+    margin-bottom: 0px !important;
   }
 }
 
 .cart-item {
-  position: relative;
   height: 160px;
   width: 100%;
-  margin: 8px 0 !important;
-  background: #cafeda;
-  border: 1px solid #000;
-  box-shadow: rgba(0, 0, 0, 0.1) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+  margin-bottom: 16px !important;
+  background: #cfe9f3;
+  border-right: 8px solid rgba(0, 0, 0, 0.2);
+  border-left: 8px solid rgba(0, 0, 0, 0.2);
+  border-top: 8px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 8px solid rgba(0, 0, 0, 0.1);
 }
 .img {
-  height: 160px;
+  height: 144px;
   width: 100%;
 
   img {
-    height: 160px;
+    height: 144px;
     width: 100%;
     object-fit: cover;
-    border: 4px solid transparent;
+  }
+}
+.cart-item-detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  :first-child {
+    font-size: 24px;
+  }
+  span {
+    margin-left: 32px;
+    text-align: left;
   }
 }
 .remove-btn {
-  position: absolute !important;
-  right: 16px;
-  bottom: 0;
-  text-decoration: underline;
-  font-weight: bold !important;
-
+  text-align: center;
+  color: rgba(0, 0, 0, 0.5);
   &:hover {
-    color: red;
+    color: rgb(255, 0, 0);
   }
+}
+.cart-item-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .cart-total-container {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+
+  span {
+    text-align: left;
+    margin: 0 16px;
+    font-weight: normal;
+  }
 
   hr {
     background: #000;

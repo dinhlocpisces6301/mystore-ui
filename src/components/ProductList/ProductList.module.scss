@@ -7,14 +7,13 @@
   width: 100%;
   object-fit: fill;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 3px 3px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 16px;
 }
 .detail {
-  height: 84px;
+  height: auto;
   width: 100%;
 
   span {
-    text-align: right;
+    text-align: left;
   }
 }

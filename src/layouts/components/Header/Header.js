@@ -108,7 +108,7 @@ function Header() {
       }, 2000);
     };
     const handleRedirectToProfile = () => {
-      navigate(config.routes.home, { replace: true });
+      navigate(config.routes.profile, { replace: true });
     };
     return (
       <Menu

@@ -9,9 +9,10 @@ import Home from '~/pages/Home';
 import About from '~/pages/About';
 import Contact from '~/pages/Contact';
 import Community from '~/pages/Community';
+
+import Product from '~/pages/Product';
+import Products from '~/pages/Products';
 // import Category from '~/pages/Category';
-// import Product from '~/pages/Product';
-// import Products from '~/pages/Products';
 // import Search from '~/pages/Search';
 
 import Profile from '~/pages/Profile';
@@ -31,11 +32,11 @@ const publicRoutes = [
   { path: config.routes.about, component: About },
   { path: config.routes.contact, component: Contact },
 
-  // { path: config.routes.product, component: Product, layout: HeaderOnly },
-  // { path: config.routes.products, component: Products, layout: HeaderOnly },
-  // { path: config.routes.allProduct, component: Products, layout: HeaderOnly },
-  // { path: config.routes.allProductWithDefaultPagination, component: Products, layout: HeaderOnly },
-  // { path: config.routes.allProductWithPagination, component: Products, layout: HeaderOnly },
+  { path: config.routes.product, component: Product },
+  { path: config.routes.products, component: Products },
+  { path: config.routes.allProduct, component: Products },
+  { path: config.routes.allProductWithDefaultPagination, component: Products },
+  { path: config.routes.allProductWithPagination, component: Products },
   // { path: config.routes.search, component: Search },
   // { path: config.routes.searchWithPagination, component: Search },
   // { path: config.routes.searchWithDefaultPagination, component: Search },

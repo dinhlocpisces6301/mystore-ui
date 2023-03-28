@@ -19,21 +19,28 @@ function CartContainer() {
           <CartItem />
           <CartItem />
           <CartItem />
+          <CartItem />
+          <CartItem />
+          <CartItem />
+          <CartItem />
+          <CartItem />
+          <CartItem />
+          <CartItem />
+          <CartItem />
         </Box>
       </Grid>
       <Grid xs={12} md={5} className={cx('cart-total-container')}>
-        <Typography variant="subTitle" align="left" marginX={2}>
+        <Typography variant="subTitle">
           Tổng cộng: <strong>2.000.000đ</strong>
         </Typography>
-        <Divider variant="middle" flexItem />
-        <Typography variant="subTitle" align="left" marginX={2}>
+        <Typography variant="subTitle">
           Giảm được: <strong>1.500.000đ</strong>
         </Typography>
-        <Typography variant="subTitle" align="left" color="error" marginX={2}>
-          Thuế: 10% ~ 50.000đ
+        <Typography variant="subTitle" color="error">
+          Thuế: 10%
         </Typography>
         <Divider variant="middle" flexItem />
-        <Typography variant="subTitle" align="left" marginX={2}>
+        <Typography variant="subTitle">
           Tiền phải thanh toán: <strong>550.000đ</strong>
         </Typography>
         <Box className={cx('btn-container')}>

@@ -109,7 +109,7 @@ function Slider() {
               key={product.id}
             >
               <Grid xs={12} md={8} sx={{ height: { xs: '320px', md: '360px', lg: '480px' } }}>
-                <Link to={'/'}>
+                <Link to={'/product/id'}>
                   <img src={product.img} alt="" className={cx('slider-img')} />
                 </Link>
               </Grid>
@@ -125,7 +125,7 @@ function Slider() {
                 }}
               >
                 <Typography variant="title">
-                  <Link to={'/'}>{product.name}</Link>
+                  <Link to={'/product/id'}>{product.name}</Link>
                 </Typography>
                 <Typography variant="company" sx={{ mx: 4 }}>
                   {`Nhà phát hành: ${product.publisher}`}
