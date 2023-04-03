@@ -27,9 +27,9 @@ export const getProductsByKeyword = async (q, page, size = 10) => {
   }
 };
 
-export const getProductsByGenreId = async (q, page, size = 10) => {
+export const getProductsByGenreId = async (genreID, page, size = 12) => {
   try {
-    const res = await httpRequest.get(`games/paging?GenreID=${q}&pageindex=${page}&pagesize=${size}`);
+    const res = await httpRequest.get(`games/paging?GenreID=${genreID}&pageindex=${page}&pagesize=${size}`);
     return res;
   } catch (error) {
     console.log(error);

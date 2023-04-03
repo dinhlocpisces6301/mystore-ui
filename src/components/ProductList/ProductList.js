@@ -19,7 +19,7 @@ function ProductList({ title = 'Product List', data }) {
 
         <Grid container xs={12} spacing={2.5} rowSpacing={4}>
           {data.items?.map((item) => {
-            return <Product key={item.id} data={item} />;
+            return <Product key={item.id || item.gameID} data={item} />;
           })}
         </Grid>
 

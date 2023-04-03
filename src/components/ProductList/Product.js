@@ -12,11 +12,11 @@ function Product({ data }) {
   return (
     <Grid xs={6} md={2.4} lg={2}>
       <Box className={cx('content')}>
-        <Link to={`/product/${data.id}`}>
+        <Link to={`/product/${data.id || data.gameID}`}>
           <img src={imageServices.getImage(data.listImage[0])} alt="" className={cx('img')} />
         </Link>
         <Box className={cx('detail')}>
-          <Link to={`/product/${data.id}`}>
+          <Link to={`/product/${data.id || data.gameID}`}>
             <Typography variant="subTitle">{data.name}</Typography>
           </Link>
           {data.discount !== 0 && <Typography variant="origin-price">{currencyFormat(data.price)}</Typography>}

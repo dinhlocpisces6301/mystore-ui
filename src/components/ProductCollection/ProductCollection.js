@@ -16,19 +16,28 @@ function ProductCollection() {
 
   useEffect(() => {
     const fetchApi = async () => {
-      const salesResult = await productServices.getSalesProduct(1, 3);
-      const bestseller = await productServices.getBestSellerProduct(1, 3);
       const latestResult = await productServices.getLatestProduct(1, 3);
-
       setLatestProducts(latestResult.items);
-      setBestSellerProducts(bestseller.items);
+    };
+    fetchApi();
+  }, []);
+
+  useEffect(() => {
+    const fetchApi = async () => {
+      const salesResult = await productServices.getSalesProduct(1, 3);
       setSalesProducts(salesResult.items);
     };
     fetchApi();
   }, []);
-  console.log(latestProducts);
-  console.log(bestSellerProducts);
-  console.log(salesProducts);
+
+  useEffect(() => {
+    const fetchApi = async () => {
+      const bestseller = await productServices.getBestSellerProduct(1, 3);
+      setBestSellerProducts(bestseller.items);
+    };
+    fetchApi();
+  }, []);
+
   const navigate = useNavigate();
   return (
     <Grid container xs={12} disableEqualOverflow className={cx('wrapper')}>

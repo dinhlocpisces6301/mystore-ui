@@ -13,7 +13,7 @@ const routes = {
   checkout: '/checkout',
   product: '/product/:productId',
   products: '/products/:keyword?',
-  category: '/category/:genre?',
+  category: '/category/:genreId?',
   search: '/search/:keyword',
   community: '/community',
 };
