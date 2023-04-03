@@ -7,14 +7,14 @@ import { Box, Typography } from '@mui/material';
 import { currencyFormat, randomColor } from '~/utils';
 import GenreList from '~/components/GenreList/';
 import SliderButton from './SliderButton';
+import * as productServices from '~/services/productServices';
+import * as imageServices from '~/services/imageServices';
 import styles from './Slider.module.scss';
-
 const cx = classNames.bind(styles);
 
 function Slider() {
   const [slideIndex, setSlideIndex] = useState(1);
-  // eslint-disable-next-line no-unused-vars
-  const [slideValue, setSlideValue] = useState([1, 2, 3, 4, 5]);
+  const [slideValue, setSlideValue] = useState();
   useEffect(() => {
     const timerId = setInterval(nextSlide, 5000);
     return () => {
@@ -42,48 +42,13 @@ function Slider() {
     setSlideIndex(index);
   };
 
-  const productList = [
-    {
-      id: 1,
-      name: 'Genshin Impact',
-      publisher: 'Mihoyo',
-      origin_price: 200000,
-      price: 180000,
-      img: process.env.PUBLIC_URL + '/images/tmp.jpg',
-    },
-    {
-      id: 2,
-      name: 'Grand Thieves V',
-      publisher: 'Publisher 1',
-      origin_price: 1100000,
-      price: 275000,
-      img: process.env.PUBLIC_URL + '/images/tmp1.jpg',
-    },
-    {
-      id: 3,
-      name: 'Subnautica',
-      publisher: 'Publisher 2',
-      origin_price: 250000,
-      price: 250000,
-      img: process.env.PUBLIC_URL + '/images/tmp2.jpg',
-    },
-    {
-      id: 4,
-      name: 'Elden Ring',
-      publisher: 'Publisher 3',
-      origin_price: 100000,
-      price: 330000,
-      img: process.env.PUBLIC_URL + '/images/tmp.jpg',
-    },
-    {
-      id: 5,
-      name: 'Windows 11',
-      publisher: 'Microsoft',
-      origin_price: 0,
-      price: 0,
-      img: process.env.PUBLIC_URL + '/images/tmp1.jpg',
-    },
-  ];
+  useEffect(() => {
+    const fetchApi = async () => {
+      const result = await productServices.getLatestProduct(1, 10);
+      setSlideValue(result.items);
+    };
+    fetchApi();
+  }, []);
   return (
     <Grid
       container
@@ -99,7 +64,7 @@ function Slider() {
     >
       {/* Slide begin */}
       <>
-        {productList?.map((product, index) => {
+        {slideValue?.map((product, index) => {
           return (
             <Grid
               container
@@ -108,9 +73,9 @@ function Slider() {
               className={slideIndex === index + 1 ? cx('slide', 'aim') : cx('slide')}
               key={product.id}
             >
-              <Grid xs={12} md={8} sx={{ height: { xs: '320px', md: '360px', lg: '480px' } }}>
-                <Link to={'/product/9e8634ae-7dc7-4942-6890-08db2f8e91bc'}>
-                  <img src={product.img} alt="" className={cx('slider-img')} />
+              <Grid xs={12} md={8} sx={{ height: { xs: '320px', md: '360px', lg: '400px' } }}>
+                <Link to={`/product/${product.id}`}>
+                  <img src={imageServices.getImage(product.listImage[1])} alt="" className={cx('slider-img')} />
                 </Link>
               </Grid>
               <Grid
@@ -125,20 +90,16 @@ function Slider() {
                 }}
               >
                 <Typography variant="title">
-                  <Link to={'/product/9e8634ae-7dc7-4942-6890-08db2f8e91bc'}>{product.name}</Link>
+                  <Link to={`/product/${product.id}`}>{product.name}</Link>
                 </Typography>
-                <Typography variant="company" sx={{ mx: 4 }}>
-                  {`Nhà phát hành: ${product.publisher}`}
-                </Typography>
-                {product.origin_price !== product.price && (
-                  <Typography variant="origin-price" sx={{ mx: 4 }}>
-                    {currencyFormat(product.origin_price)}
-                  </Typography>
+                <Typography variant="company">{`Nhà phát hành: ${product.publisher || 'STEM'}`}</Typography>
+                {product.discount !== 0 && (
+                  <Typography variant="origin-price">{currencyFormat(product.price)}</Typography>
                 )}
-                <Typography variant="price" sx={{ mx: 4 }}>
-                  {product.price > 0 ? currencyFormat(product.price) : 'Free'}
+                <Typography variant="price">
+                  {product.price === 0 ? 'Miễn phí' : currencyFormat(product.price * (1 - product.discount / 100))}
                 </Typography>
-                <GenreList />
+                <GenreList data={{ genreIDs: product.genreIDs, genreName: product.genreName }} />
               </Grid>
             </Grid>
           );
@@ -149,7 +110,7 @@ function Slider() {
       <SliderButton moveSlide={() => prevSlide()} />
       <SliderButton moveSlide={() => nextSlide()} direction={'right'} />
       <Grid xs={12} md={8} lg={8} className={cx('dot-container')}>
-        {Array.from({ length: 5 }).map((item, index) => (
+        {Array.from({ length: slideValue?.length }).map((item, index) => (
           <Box
             key={index}
             onClick={() => moveDot(index + 1)}

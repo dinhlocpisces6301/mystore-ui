@@ -6,12 +6,11 @@ import * as productServices from '~/services/productServices';
 
 function Product() {
   const { productId } = useParams();
-  const [value, setValue] = useState(undefined);
+  const [value, setValue] = useState();
   useEffect(() => {
     const fetchApi = async () => {
       const result = await productServices.getProductById(productId);
       setValue(result);
-      console.log(result);
     };
 
     fetchApi();

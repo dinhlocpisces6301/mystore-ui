@@ -1,29 +1,27 @@
 import classNames from 'classnames/bind';
 import { Box, Typography } from '@mui/material';
-import Grid from '@mui/material/Unstable_Grid2';
-import { currencyFormat } from '~/utils';
-import styles from './ProductCollection.module.scss';
 import { Link } from 'react-router-dom';
+import Grid from '@mui/material/Unstable_Grid2';
+
+import { currencyFormat } from '~/utils';
+import * as imageServices from '~/services/imageServices';
+
+import styles from './ProductCollection.module.scss';
 const cx = classNames.bind(styles);
-function Product() {
+
+function Product({ data }) {
   return (
     <Grid container xs={12}>
       <Box className={cx('content')}>
-        <Link to={'/product/9e8634ae-7dc7-4942-6890-08db2f8e91bc'}>
-          <img src={process.env.PUBLIC_URL + '/images/2.jpg'} alt="" className={cx('img')} />
+        <Link to={`/product/${data.id || data.gameID}`} className={cx('img')}>
+          <img src={imageServices.getImage(data.listImage[1])} alt="" className={cx('img')} />
         </Link>
         <Box className={cx('detail')}>
-          <Link to={'/product/9e8634ae-7dc7-4942-6890-08db2f8e91bc'}>
-            <Typography variant="subTitle" sx={{ fontSize: '16px' }}>
-              Red Dead Redemption 2
-            </Typography>
-
-            <Typography variant="origin-price" align="right">
-              {currencyFormat(200000)}
-            </Typography>
-
-            <Typography variant="price" align="right">
-              {currencyFormat(200000)}
+          <Link to={`/product/${data.id || data.gameID}`}>
+            <Typography variant="subTitle">{data.name}</Typography>
+            {data.discount !== 0 && <Typography variant="origin-price">{currencyFormat(data.price)}</Typography>}
+            <Typography variant="price">
+              {data.price === 0 ? 'Miễn phí' : currencyFormat(data.price * (1 - data.discount / 100))}
             </Typography>
           </Link>
         </Box>

@@ -12,8 +12,8 @@ import Community from '~/pages/Community';
 
 import Product from '~/pages/Product';
 import Products from '~/pages/Products';
-// import Category from '~/pages/Category';
-// import Search from '~/pages/Search';
+import Category from '~/pages/Category';
+import Search from '~/pages/Search';
 
 import Profile from '~/pages/Profile';
 import Cart from '~/pages/Cart';
@@ -34,16 +34,8 @@ const publicRoutes = [
 
   { path: config.routes.product, component: Product },
   { path: config.routes.products, component: Products },
-  { path: config.routes.allProduct, component: Products },
-  { path: config.routes.allProductWithDefaultPagination, component: Products },
-  { path: config.routes.allProductWithPagination, component: Products },
-  // { path: config.routes.search, component: Search },
-  // { path: config.routes.searchWithPagination, component: Search },
-  // { path: config.routes.searchWithDefaultPagination, component: Search },
-  // { path: config.routes.categoryWithPagination, component: Category },
-  // { path: config.routes.categoryWithDefaultPagination, component: Category },
-  // { path: config.routes.categoryWithGenre, component: Category },
-  // { path: config.routes.category, component: Category, layout: HeaderOnly },
+  { path: config.routes.search, component: Search },
+  { path: config.routes.category, component: Category },
 
   { path: config.routes.community, component: Community },
 ];

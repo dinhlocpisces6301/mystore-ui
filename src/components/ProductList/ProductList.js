@@ -1,9 +1,13 @@
 import Grid from '@mui/material/Unstable_Grid2';
+import { Pagination, PaginationItem, Typography } from '@mui/material';
+import { Link, useLocation } from 'react-router-dom';
 
 import Product from './Product';
-import { Pagination, Typography } from '@mui/material';
 
-function ProductList({ title = 'Product List' }) {
+function ProductList({ title = 'Product List', data }) {
+  const location = useLocation();
+  const query = new URLSearchParams(location.search);
+  const page = parseInt(query.get('page') || '1', 10);
   return (
     <>
       <Grid container xs={12} disableEqualOverflow>
@@ -13,22 +17,30 @@ function ProductList({ title = 'Product List' }) {
           </Typography>
         </Grid>
 
-        <Grid container xs={12} rowSpacing={4}>
-          {Array.from({ length: 8 }).map((item, index) => {
-            return <Product key={index} />;
+        <Grid container xs={12} spacing={2.5} rowSpacing={4}>
+          {data.items?.map((item) => {
+            return <Product key={item.id} data={item} />;
           })}
         </Grid>
 
-        <Grid xs={12} sx={{ display: 'flex', justifyContent: 'center', marginY: 2 }}>
-          <Pagination
-            count={10}
-            defaultPage={1}
-            siblingCount={1}
-            boundaryCount={1}
-            variant="outlined"
-            shape="rounded"
-          />
-        </Grid>
+        {location.pathname !== '/' && data.pageCount > 1 && (
+          <Grid xs={12} sx={{ display: 'flex', justifyContent: 'center', marginY: 2 }}>
+            <Pagination
+              variant="outlined"
+              shape="rounded"
+              color="error"
+              count={data.pageCount}
+              page={page}
+              renderItem={(item) => (
+                <PaginationItem
+                  component={Link}
+                  to={`${location.pathname}${item.page === 1 ? '' : `?page=${item.page}`}`}
+                  {...item}
+                />
+              )}
+            />
+          </Grid>
+        )}
       </Grid>
     </>
   );

@@ -45,7 +45,7 @@ function CartItem({ data }) {
       <Grid container xs={12} className={cx('cart-item')}>
         <Grid xs={5}>
           <Box className={cx('img')}>
-            <img src={imageServices.getImage(data.imageList[0])} alt="" className={cx('img')} />
+            <img src={imageServices.getImage(data.imageList[1])} alt="" className={cx('img')} />
           </Box>
         </Grid>
         <Grid xs={6} className={cx('cart-item-detail')}>

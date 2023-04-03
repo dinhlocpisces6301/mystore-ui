@@ -68,7 +68,7 @@ function Header() {
   useLayoutEffect(() => {
     setWishlistData(wishlist.data || []);
   }, [wishlist]);
-
+  // Phần điều hướng của Header
   const NavItems = () => {
     return (
       <Stack direction="row" justifyContent="center" alignItems="center" spacing={2} className={cx('navbar-items')}>
@@ -99,6 +99,8 @@ function Header() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  // Menu của Header
   const NavMenu = ({ username = 'User Name' }) => {
     const handleLogout = () => {
       authServices.logout();
@@ -123,19 +125,7 @@ function Header() {
           sx: {
             overflow: 'visible',
             filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-            mt: 1.5,
             width: '200px',
-            '&:before': {
-              display: 'block',
-              position: 'absolute',
-              top: 0,
-              right: 24,
-              width: 16,
-              height: 16,
-              bgcolor: 'background.paper',
-              transform: 'translateY(-50%) rotate(45deg)',
-              zIndex: 0,
-            },
           },
         }}
       >
@@ -163,6 +153,7 @@ function Header() {
 
   return (
     <AppBar position="sticky" sx={{ background: '#cfe9f3' }}>
+      {/* Logo start */}
       <Grid container className={cx('wrapper')}>
         <Grid
           xs={12}
@@ -207,6 +198,9 @@ function Header() {
             <AccountCircleIcon />
           </IconButton>
         </Grid>
+        {/* Logo end */}
+
+        {/* NavItem start */}
         <Grid
           lg={6}
           sx={{
@@ -219,6 +213,9 @@ function Header() {
         >
           <NavItems />
         </Grid>
+        {/* NavItem end */}
+
+        {/* Action start*/}
         <Grid
           lg={3}
           sx={{
@@ -295,6 +292,7 @@ function Header() {
             </Box>
           )}
         </Grid>
+        {/* Action end*/}
       </Grid>
     </AppBar>
   );

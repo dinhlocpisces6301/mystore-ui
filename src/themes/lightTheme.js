@@ -55,7 +55,7 @@ const light = createTheme({
       fontSize: '18px',
       textAlign: 'left',
       fontWeight: 'bold',
-      color: '#000',
+      color: '#4c4c4c',
       display: 'block',
     },
   },
@@ -63,7 +63,7 @@ const light = createTheme({
     values: {
       xs: 0,
       sm: 600,
-      md: 900,
+      md: 768,
       lg: 1200,
       xl: 1536,
     },

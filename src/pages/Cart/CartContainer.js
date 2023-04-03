@@ -9,6 +9,7 @@ import { currencyFormat } from '~/utils';
 
 import classNames from 'classnames/bind';
 import styles from './Cart.module.scss';
+import { useNavigate } from 'react-router-dom';
 const cx = classNames.bind(styles);
 
 function CartContainer() {
@@ -22,6 +23,8 @@ function CartContainer() {
   useEffect(() => {
     setCartData(cart.data || []);
   }, [cart]);
+
+  const navigate = useNavigate();
   return (
     <Grid container xs={12}>
       <Grid xs={12}>
@@ -62,10 +65,22 @@ function CartContainer() {
           </strong>
         </Typography>
         <Box className={cx('btn-container')}>
-          <Button variant="contained" color="info">
+          <Button
+            variant="contained"
+            color="info"
+            onClick={() => {
+              navigate('/');
+            }}
+          >
             Tiếp tục mua sắm
           </Button>
-          <Button variant="contained" color="success">
+          <Button
+            variant="contained"
+            color="success"
+            onClick={() => {
+              navigate('/checkout');
+            }}
+          >
             Thanh toán
           </Button>
         </Box>
