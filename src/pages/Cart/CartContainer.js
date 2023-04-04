@@ -19,7 +19,6 @@ function CartContainer() {
   useEffect(() => {
     dispatch(getCart());
   }, [dispatch]);
-  console.log(cartData);
   useEffect(() => {
     setCartData(cart.data || []);
   }, [cart]);

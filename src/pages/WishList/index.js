@@ -1,5 +1,7 @@
+import WishlistContainer from './WishlistContainer';
+
 function WishList() {
-  return <div>WishList Page</div>;
+  return <WishlistContainer />;
 }
 
 export default WishList;

@@ -6,6 +6,7 @@ import * as productServices from '~/services/productServices';
 import ProductList from '~/components/ProductList';
 import SearchBar from '~/components/SearchBar';
 import CategoryList from './CategoryList';
+import { Skeleton } from '@mui/material';
 
 function Category() {
   const { genreId } = useParams();
@@ -42,7 +43,7 @@ function Category() {
         data !== undefined ? (
           <ProductList title={`Thể loại: ${genreName} - Trang ${page || 1}`} data={data} />
         ) : (
-          <h1>Loading . . .</h1>
+          <Skeleton variant="rectangular" height={'100%'} />
         )
       ) : (
         <CategoryList />
