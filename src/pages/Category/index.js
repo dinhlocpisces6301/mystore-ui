@@ -5,6 +5,7 @@ import * as categoryServices from '~/services/categoryServices';
 import * as productServices from '~/services/productServices';
 import ProductList from '~/components/ProductList';
 import SearchBar from '~/components/SearchBar';
+import CategoryList from './CategoryList';
 
 function Category() {
   const { genreId } = useParams();
@@ -15,25 +16,36 @@ function Category() {
   const [genreName, setGenreName] = useState();
   useEffect(() => {
     const fetchApi = async () => {
-      const result = await productServices.getProductsByGenreId(genreId, page || 1);
-      setData(result);
+      if (genreId) {
+        const result = await productServices.getProductsByGenreId(genreId, page || 1);
+        setData(result);
+      }
     };
     fetchApi();
   }, [genreId, page]);
+
   useEffect(() => {
     const fetchApi = async () => {
-      const result = await categoryServices.getCategoryById(genreId);
-      setGenreName(result.name);
+      if (genreId) {
+        const result = await categoryServices.getCategoryById(genreId);
+        setGenreName(result.name);
+      }
     };
     fetchApi();
   }, [genreId]);
+
   return (
     <>
       <SearchBar />
-      {data !== undefined ? (
-        <ProductList title={`Thể loại: ${genreName} - Trang ${page || 1}`} data={data} />
+
+      {genreId !== undefined ? (
+        data !== undefined ? (
+          <ProductList title={`Thể loại: ${genreName} - Trang ${page || 1}`} data={data} />
+        ) : (
+          <h1>Loading . . .</h1>
+        )
       ) : (
-        <h1>Loading . . .</h1>
+        <CategoryList />
       )}
     </>
   );
