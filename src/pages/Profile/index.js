@@ -1,5 +1,12 @@
+import MultiTab from '~/components/MultiTab';
+import { Items } from './Tabs';
+
 function Profile() {
-  return <div>Profile</div>;
+  return (
+    <>
+      <MultiTab data={Items} />
+    </>
+  );
 }
 
 export default Profile;

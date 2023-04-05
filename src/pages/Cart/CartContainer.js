@@ -51,9 +51,6 @@ function CartContainer() {
             {currencyFormat(cartData.reduce((total, current) => total + (current.price * current.discount) / 100, 0))}
           </strong>
         </Typography>
-        <Typography variant="subTitle" color="error">
-          Thuế: 0%
-        </Typography>
         <Divider variant="middle" flexItem />
         <Typography variant="subTitle">
           Tiền phải thanh toán:{' '}

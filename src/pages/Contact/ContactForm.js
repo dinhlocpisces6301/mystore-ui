@@ -42,7 +42,6 @@ function ContactForm() {
       email: email,
       content: content,
     });
-    console.log(response);
     if (response.isSuccess === false) {
       setLoading(false);
       Notify(response.message, 'error');

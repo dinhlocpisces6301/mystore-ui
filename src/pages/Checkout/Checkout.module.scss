@@ -1,4 +1,4 @@
-.cart-container {
+.items-container {
   overflow-y: overlay;
   height: 480px;
   background: #faf7f0;
@@ -22,11 +22,11 @@
   }
 }
 
-.cart-item {
+.item {
   height: 160px;
   width: 100%;
-  margin-bottom: 16px !important;
-  background: #cafeda;
+  margin-bottom: 8px !important;
+  background: #cafe;
   border-right: 8px solid rgba(0, 0, 0, 0.2);
   border-left: 8px solid rgba(0, 0, 0, 0.2);
   border-top: 8px solid rgba(0, 0, 0, 0.1);
@@ -43,7 +43,7 @@
     object-fit: cover;
   }
 }
-.cart-item-detail {
+.item-detail {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -55,21 +55,8 @@
     text-align: left;
   }
 }
-.remove-btn {
-  text-align: center;
-  color: rgba(0, 0, 0, 0.5);
-  cursor: pointer;
-  &:hover {
-    color: rgb(255, 0, 0);
-  }
-}
-.cart-item-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
-.cart-total-container {
+.total-container {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -91,5 +78,13 @@ strong {
 .btn-container {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin: 16px;
+}
+.paypal-btn {
+  padding-top: 7px;
+  width: 150px;
+}
+.checkout-btn {
+  width: 150px;
 }

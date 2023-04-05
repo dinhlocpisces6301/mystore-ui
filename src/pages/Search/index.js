@@ -19,7 +19,6 @@ function Search() {
 
     fetchApi();
   }, [keyword, page]);
-  console.log(data);
 
   return (
     <>

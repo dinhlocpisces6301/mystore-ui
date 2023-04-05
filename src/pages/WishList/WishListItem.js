@@ -47,7 +47,6 @@ function WishListItem({ data }) {
   const handleClick = () => {
     removeItem();
   };
-  console.log(data);
 
   const [loading2, setLoading2] = useState(false);
   const cart = useSelector(cartSelector);

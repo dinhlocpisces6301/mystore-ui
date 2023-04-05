@@ -1,7 +1,7 @@
 .wrapper {
   margin: 16px 0 32px 0 !important;
   position: relative;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  box-shadow: rgba(0, 0, 0, 0.35) 5px 0px 5px;
   border-radius: 8px;
 }
 .slide {
@@ -16,11 +16,11 @@
   height: 100%;
   object-fit: cover;
   border-radius: 8px 0 0 8px;
+  box-shadow: rgba(0, 0, 0, 0.35) 3px 0px 5px;
 }
 .detail-container {
   height: 100%;
   flex-direction: column;
-
   > span {
     margin-left: 32px;
   }
@@ -48,14 +48,14 @@
   width: 48px;
   background: linear-gradient(#323b44 0 0) 0/0% no-repeat #fffbf5;
   border-radius: 8px;
-  // animation: loading 5s steps(10);
+  animation: loading 5s steps(10);
 }
 
-// @keyframes loading {
-//   100% {
-//     background-size: 120%;
-//   }
-// }
+@keyframes loading {
+  100% {
+    background-size: 120%;
+  }
+}
 
 .slider-btn {
   min-width: 0 !important;
@@ -64,6 +64,7 @@
   position: absolute !important;
   top: 50%;
   transform: translateY(-50%);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 3px 3px;
   svg {
     color: #000;
     font-size: 48px;

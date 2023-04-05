@@ -1,5 +1,7 @@
+import CheckoutPage from './CheckoutPage';
+
 function Checkout() {
-  return <div>Checkout</div>;
+  return <CheckoutPage />;
 }
 
 export default Checkout;

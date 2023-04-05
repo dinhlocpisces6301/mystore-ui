@@ -26,7 +26,7 @@
   padding-top: 16px;
   margin-bottom: 16px;
   .focus {
-    border: 8px solid rgba(255, 0, 0, 0.5);
+    border: 6px solid rgba(255, 0, 0, 0.5);
   }
   overflow-x: scroll;
   &::-webkit-scrollbar {
@@ -44,13 +44,12 @@
   }
 }
 .gallery-item {
-  border: 8px solid transparent;
+  border: 6px solid transparent;
   height: 120px;
   width: 180px;
   margin-right: 4px;
-  border-radius: 8px;
   &:hover {
-    border: 8px solid rgba(255, 0, 0, 0.5);
+    border: 6px solid rgba(255, 0, 0, 0.5);
   }
 }
 .arrow-up {
@@ -74,6 +73,7 @@
   width: 200px;
   margin-bottom: 16px;
   img {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 15px 15px;
     height: 240px;
     width: 200px;
   }
