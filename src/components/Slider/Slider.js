@@ -99,7 +99,7 @@ function Slider() {
                 <Typography variant="price">
                   {product.price === 0 ? 'Miễn phí' : currencyFormat(product.price * (1 - product.discount / 100))}
                 </Typography>
-                <GenreList data={{ genreIDs: product.genreIDs, genreName: product.genreName }} clickable />
+                <GenreList data={{ genreIDs: product.genreIDs, genreName: product.genreName }} />
               </Grid>
             </Grid>
           );

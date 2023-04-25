@@ -10,7 +10,7 @@ function MultiTab({ data }) {
   const [tabIndex, setTabIndex] = useState(0);
   return (
     <Grid container xs={12}>
-      <Grid container xs={12}>
+      <Grid container xs={12} className={cx('container')}>
         {data.map((item, index) => {
           return (
             <Box
@@ -25,7 +25,7 @@ function MultiTab({ data }) {
           );
         })}
       </Grid>
-      <Grid container xs={12}>
+      <Grid xs={12}>
         {data.map((item, index) => {
           return tabIndex === index && <Box key={item.id}>{item.component}</Box>;
         })}

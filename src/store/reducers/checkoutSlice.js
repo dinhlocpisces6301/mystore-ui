@@ -14,7 +14,7 @@ const checkoutSlice = createSlice({
   reducers: {
     getCheckout: (state) => {},
     getCheckoutSuccess: (state, action) => {
-      state.data = action.payload.items;
+      state.data = action.payload.items || [];
       state.loaded = true;
     },
     getCheckoutFail: (state, action) => {

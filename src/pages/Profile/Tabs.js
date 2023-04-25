@@ -1,21 +1,21 @@
-// import InfoTab from './components/InfoTab';
-// import ProductTab from './components/ProductTab';
-// import SettingTab from './components/SettingTab';
+import ProfileTab from './components/ProfileTab';
+import ProductTab from './components/ProductTab';
+import SettingTab from './components/SettingTab';
 
 export const Items = [
   {
     id: 1,
-    title: 'sản phẩm của tôi',
-    component: <h1>ProductTab</h1>,
+    title: 'sản phẩm đã mua',
+    component: <ProductTab />,
   },
   {
     id: 2,
-    title: 'thông tin cá nhân',
-    component: <h1>InfoTab</h1>,
+    title: 'giới thiệu',
+    component: <ProfileTab />,
   },
   {
     id: 3,
     title: 'cài đặt',
-    component: <h1>SettingTab</h1>,
+    component: <SettingTab />,
   },
 ];

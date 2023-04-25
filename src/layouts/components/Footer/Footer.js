@@ -50,9 +50,9 @@ function Footer() {
               <NavLink to={config.routes.home}>
                 <Typography variant="h6">Trang chủ</Typography>
               </NavLink>
-              <NavLink to={config.routes.community}>
+              {/* <NavLink to={config.routes.community}>
                 <Typography variant="h6">Cộng đồng</Typography>
-              </NavLink>
+              </NavLink> */}
               <NavLink to={config.routes.about}>
                 <Typography variant="h6">Về chúng tôi</Typography>
               </NavLink>

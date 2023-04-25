@@ -1,9 +1,9 @@
-import Grid from '@mui/material/Unstable_Grid2';
 import classNames from 'classnames/bind';
-import Typography from '@mui/material/Typography';
-import { Box } from '@mui/material';
 import { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import Grid from '@mui/material/Unstable_Grid2';
+import { Box, IconButton, Typography } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 import ToastPortal from '~/components/ToastPortal';
 import { useNotification } from '~/hooks';
@@ -55,11 +55,13 @@ function CartItem({ data }) {
         </Grid>
         <Grid xs={1} className={cx('cart-item-btn')}>
           {loading ? (
-            <Typography className={cx('remove-btn')}>Xóa</Typography>
+            <IconButton className={cx('remove-btn')}>
+              <DeleteIcon />
+            </IconButton>
           ) : (
-            <Typography className={cx('remove-btn')} onClick={handleClick}>
-              Xóa
-            </Typography>
+            <IconButton className={cx('remove-btn')} onClick={handleClick}>
+              <DeleteIcon />
+            </IconButton>
           )}
         </Grid>
       </Grid>

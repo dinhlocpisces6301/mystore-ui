@@ -1,0 +1,35 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 8px 16px 16px 16px;
+  width: 100%;
+  p {
+    font-weight: bold;
+  }
+}
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.btn-container {
+  margin: 0 8px;
+  display: flex;
+  align-items: center;
+}
+
+.btn {
+  display: flex;
+
+  svg {
+    align-self: center;
+    color: orange;
+    font-size: 32px;
+  }
+}
+.rating-btn {
+  align-self: flex-end;
+  margin-top: 16px !important;
+}

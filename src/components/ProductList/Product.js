@@ -10,7 +10,7 @@ const cx = classNames.bind(styles);
 
 function Product({ data }) {
   return (
-    <Grid xs={6} md={2.4} lg={2}>
+    <Grid xs={6} md={2.4} className={cx('wrapper')}>
       <Box className={cx('content')}>
         <Link to={`/product/${data.id || data.gameID}`}>
           <img src={imageServices.getImage(data.listImage[0])} alt="" className={cx('img')} />

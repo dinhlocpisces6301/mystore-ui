@@ -16,6 +16,8 @@ import * as authServices from '~/services/authServices';
 import GenreList from '~/components/GenreList';
 import ToastPortal from '~/components/ToastPortal';
 import LoadingSpinner from '~/components/LoadingSpinner';
+import StarsRating from '~/components/StarsRating';
+import ProductRating from '~/components/ProductRating';
 
 import { useNotification } from '~/hooks';
 import { currencyFormat } from '~/utils';
@@ -115,7 +117,10 @@ function ProductDetail({ data }) {
   return product !== undefined ? (
     <Grid container xs={12}>
       <Grid xs={12} className={cx('header')}>
-        <Typography variant="title">{product.name}</Typography>
+        <Typography variant="title" mb={1}>
+          {product.name}
+        </Typography>
+        <StarsRating star={3.7} />
       </Grid>
       <Grid xs={12} md={7} className={cx('gallery-container')}>
         <Box className={cx('screen')}>
@@ -169,6 +174,7 @@ function ProductDetail({ data }) {
         <Box className={cx('detail-img')}>
           <img src={imageServices.getImage(product.listImage[0])} alt="" />
         </Box>
+        <StarsRating star={3.7} />
         <Box className={cx('detail-content')}>
           <Typography variant="subTitle" className={cx('title')}>
             {product.name}
@@ -252,7 +258,7 @@ function ProductDetail({ data }) {
           <Typography variant="subTitle">{product.description}</Typography>
           <Divider flexItem variant="middle" />
           <Typography variant="subTitle">Thể loại:</Typography>
-          <GenreList data={{ genreIDs: product.genreIDs, genreName: product.genreName }} clickable />
+          <GenreList data={{ genreIDs: product.genreIDs, genreName: product.genreName }} />
           <Divider flexItem variant="middle" />
         </Box>
       </Grid>
@@ -310,7 +316,9 @@ function ProductDetail({ data }) {
           <Divider flexItem variant="middle" />
         </Grid>
       </Grid>
-      <Grid xs={12} className={cx('conmment-container')}></Grid>
+      <Grid xs={12} className={cx('conmment-container')}>
+        <ProductRating />
+      </Grid>
       <ToastPortal ref={toastRef} autoClose={true} />
     </Grid>
   ) : (

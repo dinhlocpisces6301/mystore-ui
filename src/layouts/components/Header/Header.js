@@ -75,10 +75,10 @@ function Header() {
         <NavLink to={config.routes.home} className={({ isActive }) => (isActive ? cx('active') : undefined)}>
           Trang chủ
         </NavLink>
-
+        {/* 
         <NavLink to={config.routes.community} className={({ isActive }) => (isActive ? cx('active') : undefined)}>
           Cộng đồng
-        </NavLink>
+        </NavLink> */}
 
         <NavLink to={config.routes.contact} className={({ isActive }) => (isActive ? cx('active') : undefined)}>
           Phản hồi
@@ -139,13 +139,13 @@ function Header() {
           <ListItemIcon>
             <AccountCircleIcon />
           </ListItemIcon>
-          My account
+          Hồ sơ
         </MenuItem>
         <MenuItem onClick={handleLogout}>
           <ListItemIcon>
             <LogoutIcon />
           </ListItemIcon>
-          Logout
+          Đăng xuất
         </MenuItem>
       </Menu>
     );
@@ -235,22 +235,24 @@ function Header() {
                 },
               }}
             >
-              <Button
-                variant="contained"
-                color="success"
-                className={cx('action-btn')}
-                onClick={() => navigate(config.routes.cart)}
-              >
-                {`Giỏ hàng (${cartData.length})`}
-              </Button>
-              <Button
-                variant="contained"
-                color="info"
-                className={cx('action-btn')}
-                onClick={() => navigate(config.routes.wishlist)}
-              >
-                {`Wishlist (${wishlistData.length})`}
-              </Button>
+              <Box className={cx('btn-container')}>
+                <Button
+                  variant="contained"
+                  color="success"
+                  className={cx('btn')}
+                  onClick={() => navigate(config.routes.cart)}
+                >
+                  {`Giỏ hàng (${cartData.length})`}
+                </Button>
+                <Button
+                  variant="contained"
+                  color="info"
+                  className={cx('btn')}
+                  onClick={() => navigate(config.routes.wishlist)}
+                >
+                  {`Wishlist (${wishlistData.length})`}
+                </Button>
+              </Box>
               <IconButton
                 aria-label=""
                 aria-controls={open ? 'account-menu' : undefined}
@@ -258,7 +260,7 @@ function Header() {
                 aria-expanded={open ? 'true' : undefined}
                 onClick={handleClick}
               >
-                <Avatar alt="avatar" src={imageServices.getImage(avatar)} />
+                <Avatar alt="avatar" src={imageServices.getImage(avatar)} variant="square" />
               </IconButton>
               <NavMenu username={userName} />
             </Box>
@@ -275,7 +277,7 @@ function Header() {
               <Button
                 variant="contained"
                 color="primary"
-                className={cx('action-btn')}
+                className={cx('login-btn')}
                 onClick={() => navigate(config.routes.signup)}
               >
                 Đăng ký
@@ -284,7 +286,7 @@ function Header() {
               <Button
                 variant="contained"
                 color="error"
-                className={cx('action-btn')}
+                className={cx('signup-btn')}
                 onClick={() => navigate(config.routes.login)}
               >
                 Đăng nhập

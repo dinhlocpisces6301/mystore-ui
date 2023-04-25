@@ -1,0 +1,23 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  margin: 8px 0 16px 32px;
+  width: 232px;
+  p {
+    font-weight: bold;
+  }
+}
+.container {
+  margin: 0 8px;
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  display: flex;
+  svg {
+    align-self: center;
+    color: orange;
+    font-size: 24px;
+  }
+}

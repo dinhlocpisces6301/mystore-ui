@@ -21,7 +21,7 @@ const light = createTheme({
       display: 'block',
     },
     title: {
-      fontSize: '32px',
+      fontSize: '28px',
       textAlign: 'left',
       fontWeight: 'bold',
       color: '#000',
@@ -41,7 +41,7 @@ const light = createTheme({
       textAlign: 'left',
       fontWeight: 'bold',
       display: 'block',
-      color: 'rgba(0,0,0,0.65)',
+      color: '#000',
     },
     'origin-price': {
       fontSize: '14px',
@@ -52,10 +52,10 @@ const light = createTheme({
       display: 'block',
     },
     price: {
-      fontSize: '18px',
+      fontSize: '16px',
       textAlign: 'left',
       fontWeight: 'bold',
-      color: '#4c4c4c',
+      color: '#000',
       display: 'block',
     },
   },

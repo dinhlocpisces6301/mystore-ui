@@ -41,7 +41,7 @@ function ProductCollection() {
   const navigate = useNavigate();
   return (
     <Grid container xs={12} disableEqualOverflow className={cx('wrapper')}>
-      <Grid container xs={10} md lg xsOffset={1} mdOffset={0} lgOffset={0} className={cx('container')}>
+      <Grid container xs={8} md lg xsOffset={2} mdOffset={0} lgOffset={0} className={cx('container')}>
         <Grid xs={12} className={cx('header')}>
           <Typography variant="h5">Bán chạy</Typography>
           <Button
@@ -49,6 +49,7 @@ function ProductCollection() {
             onClick={() => {
               navigate('/products/best-seller');
             }}
+            className={cx('btn')}
           >
             Xem thêm
           </Button>
@@ -60,7 +61,7 @@ function ProductCollection() {
 
       <Divider orientation="vertical" variant="middle" flexItem />
 
-      <Grid container xs={10} md lg xsOffset={1} mdOffset={0} lgOffset={0} className={cx('container')}>
+      <Grid container xs={8} md lg xsOffset={2} mdOffset={0} lgOffset={0} className={cx('container')}>
         <Grid xs={12} className={cx('header')}>
           <Typography variant="h5">Mới ra mắt</Typography>
           <Button
@@ -79,7 +80,7 @@ function ProductCollection() {
 
       <Divider orientation="vertical" variant="middle" flexItem />
 
-      <Grid container xs={10} md lg xsOffset={1} mdOffset={0} lgOffset={0} className={cx('container')}>
+      <Grid container xs={8} md lg xsOffset={2} mdOffset={0} lgOffset={0} className={cx('container')}>
         <Grid xs={12} className={cx('header')}>
           <Typography variant="h5">Khuyến Mãi</Typography>
           <Button
@@ -87,6 +88,7 @@ function ProductCollection() {
             onClick={() => {
               navigate('/products/specials');
             }}
+            className={cx('btn')}
           >
             Xem thêm
           </Button>

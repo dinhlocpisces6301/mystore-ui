@@ -19,13 +19,14 @@
     font-size: 20px;
   }
   button {
-    margin-right: 16px;
+    margin-right: 8px;
     min-width: 0;
     width: auto;
     text-transform: uppercase;
     color: #000;
     border: 1px solid #000;
     border-radius: 0px;
+    padding: 4px;
 
     &:hover {
       border: 1px solid #000;
@@ -44,7 +45,7 @@
   align-items: center;
   position: relative;
   &:hover > .detail {
-    height: 80px;
+    height: auto;
     background: rgba(255, 255, 255, 0.9);
   }
 

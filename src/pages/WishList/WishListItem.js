@@ -97,7 +97,7 @@ function WishListItem({ data }) {
           <Typography variant="price" className={cx('text')}>
             {currencyFormat(data.price * (1 - data.discount / 100))}
           </Typography>
-          <GenreList data={{ genreIDs: data.genreIds, genreName: data.genreName }} clickable />
+          <GenreList data={{ genreIDs: data.genreIds, genreName: data.genreName }} />
         </Grid>
         <Grid xs={12} md={3} className={cx('wishlist-item-btn')}>
           {cartData.find((p) => p.id === data.gameID) === undefined ? (
