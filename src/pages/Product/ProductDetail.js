@@ -120,7 +120,7 @@ function ProductDetail({ data }) {
         <Typography variant="title" mb={1}>
           {product.name}
         </Typography>
-        <StarsRating star={3.7} />
+        <StarsRating star={product.ratePoint} />
       </Grid>
       <Grid xs={12} md={7} className={cx('gallery-container')}>
         <Box className={cx('screen')}>
@@ -174,7 +174,7 @@ function ProductDetail({ data }) {
         <Box className={cx('detail-img')}>
           <img src={imageServices.getImage(product.listImage[0])} alt="" />
         </Box>
-        <StarsRating star={3.7} />
+        <StarsRating star={product.ratePoint} />
         <Box className={cx('detail-content')}>
           <Typography variant="subTitle" className={cx('title')}>
             {product.name}
@@ -286,8 +286,6 @@ function ProductDetail({ data }) {
           <Typography>
             Card âm thanh: <strong>{product.srm.soundcard}</strong>
           </Typography>
-
-          <Divider flexItem variant="middle" />
         </Grid>
         <Grid xs={10} md={6} xsOffset={1} mdOffset={0} className={cx('requirement')}>
           <Typography>
@@ -312,12 +310,10 @@ function ProductDetail({ data }) {
           <Typography>
             Card âm thanh: <strong>{product.srr.soundcard}</strong>
           </Typography>
-
-          <Divider flexItem variant="middle" />
         </Grid>
       </Grid>
       <Grid xs={12} className={cx('conmment-container')}>
-        <ProductRating />
+        <ProductRating productId={product.id} />
       </Grid>
       <ToastPortal ref={toastRef} autoClose={true} />
     </Grid>

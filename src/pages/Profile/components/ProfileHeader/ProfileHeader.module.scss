@@ -30,6 +30,9 @@
   span {
     text-align: left;
   }
+  :last-child {
+    opacity: 0.5;
+  }
 }
 
 .btn {

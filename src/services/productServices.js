@@ -27,7 +27,7 @@ export const getProductsByKeyword = async (q, page, size = 10) => {
   }
 };
 
-export const getProductsByGenreId = async (genreID, page, size = 12) => {
+export const getProductsByGenreId = async (genreID, page, size = 10) => {
   try {
     const res = await httpRequest.get(`games/paging?GenreID=${genreID}&pageindex=${page}&pagesize=${size}`);
     return res;
@@ -66,6 +66,24 @@ export const getBestSellerProduct = async (page, size = 10) => {
 export const getSalesProduct = async (page, size = 10) => {
   try {
     const res = await httpRequest.get(`games/getgamesale?pageindex=${page}&pagesize=${size}`);
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getProductComment = async (id, page = 1, size = 1000000) => {
+  try {
+    const res = await httpRequest.get(`comment?gameId=${id}&pageindex=${page}&pagesize=${size}`);
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const rating = async (payload) => {
+  try {
+    const res = await httpRequest.post(`comment`, payload);
     return res;
   } catch (error) {
     console.log(error);

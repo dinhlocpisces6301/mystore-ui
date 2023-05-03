@@ -11,7 +11,7 @@ function Home() {
   const [data, setData] = useState();
   useEffect(() => {
     const fetchApi = async () => {
-      const result = await productServices.getAllProduct(1, 12);
+      const result = await productServices.getAllProduct(1);
       setData(result);
     };
     fetchApi();

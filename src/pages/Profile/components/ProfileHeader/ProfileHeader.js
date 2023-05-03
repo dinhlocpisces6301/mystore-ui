@@ -8,11 +8,24 @@ import { userSelector } from '~/store/reducers/userSlice';
 import * as imageServices from '~/services/imageServices';
 
 import styles from './ProfileHeader.module.scss';
+import ImageEditor from '../ImageEditor';
+import { useRef, useState } from 'react';
 const cx = classNames.bind(styles);
 
 function ProfileHeader() {
   const user = useSelector(userSelector);
   const { data, loaded } = user;
+
+  const imgRef = useRef();
+  const [typeImage, setTypeImage] = useState();
+  const handleChangeAvatar = () => {
+    imgRef.current.show();
+    setTypeImage('avatar');
+  };
+  const handleChangeWallPaper = () => {
+    imgRef.current.show();
+    setTypeImage('wallpaper');
+  };
 
   return (
     loaded && (
@@ -24,15 +37,21 @@ function ProfileHeader() {
           <img alt="avatar" src={imageServices.getImage(data.avatarPath)} className={cx('avatar-img')} />
           <Box className={cx('user-name')}>
             <Typography variant="subTitle">{data.userName}</Typography>
-            <Typography variant="subTitle">{`(${data.firstName} ${data.lastName})`}</Typography>
+            <Typography variant="subTitle">{`${data.firstName || ''} ${data.lastName || ''}`}</Typography>
           </Box>
-          <IconButton className={cx('btn')}>
+          <IconButton className={cx('btn')} onClick={handleChangeAvatar}>
             <PhotoCameraIcon />
           </IconButton>
-          <Button variant="contained" startIcon={<PhotoCameraIcon />} className={cx('thumbnail-btn')}>
+          <Button
+            variant="contained"
+            startIcon={<PhotoCameraIcon />}
+            className={cx('thumbnail-btn')}
+            onClick={handleChangeWallPaper}
+          >
             Chỉnh sửa
           </Button>
         </Box>
+        <ImageEditor typeImage={typeImage} ref={imgRef} />
       </Grid>
     )
   );

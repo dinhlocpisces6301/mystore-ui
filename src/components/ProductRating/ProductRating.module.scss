@@ -29,7 +29,39 @@
     font-size: 32px;
   }
 }
+
 .rating-btn {
-  align-self: flex-end;
+  align-self: flex-start;
   margin-top: 16px !important;
+}
+
+.comment-container {
+  margin: 32px 0;
+}
+.comment {
+  margin: 16px 0;
+  padding: 16px 0;
+  border: 4px solid rgba(204, 204, 204, 1);
+  // box-shadow: 1px 5px 5px rgba(0, 0, 0, 0.3);
+  > p {
+    text-align: left;
+    margin-left: 40px;
+    font-size: 18px;
+  }
+}
+.user-detail {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  img {
+    height: 56px;
+    width: 56px;
+    border-radius: 50%;
+    margin-left: 40px;
+  }
+
+  span {
+    margin: 0 16px;
+  }
 }

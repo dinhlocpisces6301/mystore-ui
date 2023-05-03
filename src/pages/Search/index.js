@@ -13,7 +13,7 @@ function Search() {
 
   useEffect(() => {
     const fetchApi = async () => {
-      const result = await productServices.getProductsByKeyword(keyword, page || 1, 12);
+      const result = await productServices.getProductsByKeyword(keyword, page || 1);
       setData(result);
     };
 

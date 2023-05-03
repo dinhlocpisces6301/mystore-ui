@@ -18,22 +18,22 @@ function Products() {
       var result;
       switch (keyword) {
         case 'latest': {
-          result = await productServices.getLatestProduct(page || 1, 12);
+          result = await productServices.getLatestProduct(page || 1);
           setTitle('Sản phẩm mới');
           break;
         }
         case 'best-seller': {
-          result = await productServices.getBestSellerProduct(page || 1, 12);
+          result = await productServices.getBestSellerProduct(page || 1);
           setTitle('Bán chạy');
           break;
         }
         case 'specials': {
-          result = await productServices.getSalesProduct(page || 1, 12);
+          result = await productServices.getSalesProduct(page || 1);
           setTitle('Khuyến mãi');
           break;
         }
         default: {
-          result = await productServices.getAllProduct(page || 1, 12);
+          result = await productServices.getAllProduct(page || 1);
           setTitle('Tất cả sản phẩm');
           break;
         }
