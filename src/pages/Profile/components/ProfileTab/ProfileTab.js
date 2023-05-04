@@ -34,7 +34,7 @@ function ProfileTab() {
           <Typography variant="subTitle" className={cx('label')}>
             Ngày sinh:
           </Typography>
-          <Typography variant="subTitle">{new Date(data.dob).toLocaleDateString(undefined)}</Typography>
+          <Typography variant="subTitle">{new Date(data.dob).toLocaleDateString('en-GB')}</Typography>
         </Box>
         <Box className={cx('line')}>
           <MailIcon />

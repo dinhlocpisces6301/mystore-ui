@@ -6,6 +6,7 @@ import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 import { currencyFormat } from '~/utils';
 import * as imageServices from '~/services/imageServices';
 import styles from './ProductTab.module.scss';
+import { Link } from 'react-router-dom';
 const cx = classNames.bind(styles);
 
 function Product({ data }) {
@@ -18,9 +19,11 @@ function Product({ data }) {
       </Grid>
       <Grid xs={12} md={6}>
         <Box className={cx('item-detail')}>
-          <Typography variant="subTitle">{data.name}</Typography>
+          <Link to={`/product/${data.id}`}>
+            <Typography variant="subTitle">{data.name}</Typography>
+          </Link>
           <Typography variant="subTitle">
-            <strong>Ngày mua:</strong> {new Date(data.createdDate).toLocaleDateString(undefined)}
+            <strong>Ngày mua:</strong> {new Date(data.createdDate).toLocaleDateString('en-GB')}
           </Typography>
           <Typography variant="subTitle">
             <strong>Giá mua:</strong> {currencyFormat(data.price * (1 - data.discount / 100))}

@@ -110,8 +110,9 @@ function Header() {
       }, 2000);
     };
     const handleRedirectToProfile = () => {
-      navigate(config.routes.profile);
+      navigate(`/profile/@${username}`);
     };
+
     return (
       <Menu
         anchorEl={anchorEl}
@@ -130,7 +131,7 @@ function Header() {
         }}
       >
         <MenuItem disableTouchRipple>
-          <Typography variant="h6" sx={{ textAlign: 'center', width: '100%' }}>
+          <Typography variant="h6" sx={{ textAlign: 'center', width: '100%', background: '#cfe9f3' }}>
             {username}
           </Typography>
         </MenuItem>
