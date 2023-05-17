@@ -8,7 +8,7 @@ import { dark, light } from '~/themes';
 import DefaultLayout, { HeaderOnly } from '~/layouts';
 import { authRoutes, privateRoutes, publicRoutes } from '~/routes';
 import ScrollButton from './components/ScrollButton';
-import ChangeThemeButton from './components/ChangeThemeButton';
+// import ChangeThemeButton from './components/ChangeThemeButton';
 import config from './config';
 
 import * as authServices from '~/services/authServices';
@@ -25,7 +25,7 @@ function App() {
     <ThemeProvider theme={isDarkMode ? dark : light}>
       <CssBaseline />
       <ScrollButton />
-      <ChangeThemeButton />
+      {/* <ChangeThemeButton /> */}
       <Routes>
         {publicRoutes.map((route, index) => {
           const Page = route.component;

@@ -98,6 +98,11 @@
   button {
     width: 320px;
     margin: 16px 0;
+
+    svg {
+      margin-right: 8px;
+      font-size: 20px;
+    }
   }
 }
 .detail-script {

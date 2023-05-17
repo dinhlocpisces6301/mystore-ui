@@ -31,7 +31,7 @@ function CheckoutPage() {
     const response = await checkoutServices.checkout();
 
     if (response.isSuccess === true) {
-      Notify('success', 'Thánh toán thành công');
+      Notify('Thánh toán thành công');
       const timerId = setTimeout(() => {
         dispatch(getCart());
         navigate(config.routes.profile);
@@ -40,7 +40,7 @@ function CheckoutPage() {
     }
 
     if (response.isSuccess === false) {
-      Notify('error', 'Thánh toán thất bại');
+      Notify('Thánh toán thất bại', 'error');
       setLoading(false);
     }
   };

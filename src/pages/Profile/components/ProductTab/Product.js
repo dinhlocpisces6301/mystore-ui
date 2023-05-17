@@ -10,11 +10,12 @@ import { Link } from 'react-router-dom';
 const cx = classNames.bind(styles);
 
 function Product({ data }) {
+  // console.log(data);
   return (
     <Grid container xs={12} className={cx('item')}>
       <Grid xs={12} md={4}>
         <Box className={cx('item-img')}>
-          <img src={imageServices.getImage(data.listImage[1])} alt="Game" />
+          <img src={imageServices.getImage(data.listImage[0])} alt="Game" />
         </Box>
       </Grid>
       <Grid xs={12} md={6}>
@@ -31,9 +32,16 @@ function Product({ data }) {
         </Box>
       </Grid>
       <Grid xs={12} md={2} className={cx('item-action')}>
-        <IconButton>
-          <CloudDownloadIcon />
-        </IconButton>
+        <a
+          href={process.env.PUBLIC_URL + '/files/game.rar'}
+          target="_blank"
+          rel="noopener noreferrer"
+          download={`${data.name}.rar`}
+        >
+          <IconButton>
+            <CloudDownloadIcon />
+          </IconButton>
+        </a>
       </Grid>
     </Grid>
   );

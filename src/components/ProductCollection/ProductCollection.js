@@ -17,7 +17,7 @@ function ProductCollection() {
   useEffect(() => {
     const fetchApi = async () => {
       const latestResult = await productServices.getLatestProduct(1, 3);
-      setLatestProducts(latestResult.items);
+      if (latestResult) setLatestProducts(latestResult.items);
     };
     fetchApi();
   }, []);
@@ -25,7 +25,7 @@ function ProductCollection() {
   useEffect(() => {
     const fetchApi = async () => {
       const salesResult = await productServices.getSalesProduct(1, 3);
-      setSalesProducts(salesResult.items);
+      if (salesResult) setSalesProducts(salesResult.items);
     };
     fetchApi();
   }, []);
@@ -33,7 +33,7 @@ function ProductCollection() {
   useEffect(() => {
     const fetchApi = async () => {
       const bestseller = await productServices.getBestSellerProduct(1, 3);
-      setBestSellerProducts(bestseller.items);
+      if (bestseller) setBestSellerProducts(bestseller.items);
     };
     fetchApi();
   }, []);

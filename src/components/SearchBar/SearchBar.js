@@ -40,9 +40,11 @@ function SearchBar() {
     const fetchApi = async () => {
       if (debouncedValue !== '') {
         const result = await productServices.search(debouncedValue);
-        setSearchResult(result.items);
-        setTotalRecords(result.totalRecords);
-        setShowResult(true);
+        if (result) {
+          setSearchResult(result.items);
+          setTotalRecords(result.totalRecords);
+          setShowResult(true);
+        }
       }
     };
 

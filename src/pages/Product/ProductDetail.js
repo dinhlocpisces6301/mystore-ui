@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import Grid from '@mui/material/Unstable_Grid2';
 import { Box, Button, Divider, Skeleton, Typography } from '@mui/material';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -18,6 +18,7 @@ import ToastPortal from '~/components/ToastPortal';
 import LoadingSpinner from '~/components/LoadingSpinner';
 import StarsRating from '~/components/StarsRating';
 import ProductRating from '~/components/ProductRating';
+import ProductList from '~/components/ProductList';
 
 import { useNotification } from '~/hooks';
 import { currencyFormat } from '~/utils';
@@ -28,11 +29,11 @@ import styles from './ProductDetail.module.scss';
 const cx = classNames.bind(styles);
 
 function ProductDetail({ data }) {
+  // console.log(data);
   const [product, setProduct] = useState(data);
   useEffect(() => {
     setProduct(data);
   }, [data]);
-
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const addToCart = async () => {
@@ -218,7 +219,7 @@ function ProductDetail({ data }) {
                   </Button>
                 ) : (
                   <Button variant="contained" onClick={handleAddToWishlist}>
-                    <AddCircleOutlineIcon />
+                    <FavoriteIcon />
                     Thêm vào wishlist
                   </Button>
                 )
@@ -229,7 +230,7 @@ function ProductDetail({ data }) {
                     navigate(config.routes.wishlist);
                   }}
                 >
-                  <AddCircleOutlineIcon />
+                  <FavoriteIcon />
                   Xem wishlist
                 </Button>
               )}
@@ -248,8 +249,8 @@ function ProductDetail({ data }) {
         </Box>
         <Box className={cx('detail-content')}>
           <Divider flexItem />
-          <Typography variant="company">Nhà phát hành: {product.publisher || '. . .'}</Typography>
-          <Typography variant="company">Ngày ra mắt: 28/09/2019</Typography>
+          <Typography variant="company">Nhà phát hành: {product.publisher || 'RockStar'}</Typography>
+          <Typography variant="company">Ngày ra mắt: 17/09/2013</Typography>
         </Box>
       </Grid>
       <Grid xs={12}>
@@ -311,6 +312,14 @@ function ProductDetail({ data }) {
             Card âm thanh: <strong>{product.srr.soundcard}</strong>
           </Typography>
         </Grid>
+      </Grid>
+      <Grid xs={12}>
+        {product.gameSuggestionList.length > 0 && (
+          <ProductList
+            title="Sản phẩm tương tự"
+            data={{ items: product.gameSuggestionList.slice(0, 5), pageCount: 0 }}
+          />
+        )}
       </Grid>
       <Grid xs={12} className={cx('conmment-container')}>
         <ProductRating productId={product.id} />

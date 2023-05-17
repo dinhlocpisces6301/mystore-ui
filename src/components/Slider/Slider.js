@@ -14,7 +14,7 @@ const cx = classNames.bind(styles);
 
 function Slider() {
   const [slideIndex, setSlideIndex] = useState(1);
-  const [slideValue, setSlideValue] = useState();
+  const [slideValue, setSlideValue] = useState([]);
   useEffect(() => {
     const timerId = setInterval(nextSlide, 5000);
     return () => {
@@ -45,10 +45,11 @@ function Slider() {
   useEffect(() => {
     const fetchApi = async () => {
       const result = await productServices.getLatestProduct(1, 10);
-      setSlideValue(result.items);
+      if (result) setSlideValue(result.items);
     };
     fetchApi();
   }, []);
+
   return (
     <Grid
       container
@@ -69,7 +70,6 @@ function Slider() {
             <Grid
               container
               xs={12}
-              spacingX={2}
               className={slideIndex === index + 1 ? cx('slide', 'aim') : cx('slide')}
               key={product.id}
             >

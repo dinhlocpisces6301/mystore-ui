@@ -27,10 +27,10 @@ function ChangeInfoTab() {
   const { data } = user;
   useEffect(() => {
     if (data !== undefined) {
-      setFirstName(data.firstName);
-      setLastName(data.lastName);
-      setDob(data.dob);
-      setphoneNumber(data.phoneNumber);
+      setFirstName(data.firstName || '');
+      setLastName(data.lastName || '');
+      setDob(data.dob || '');
+      setphoneNumber(data.phoneNumber || '');
     }
   }, [data]);
 
