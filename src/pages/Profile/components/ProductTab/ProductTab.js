@@ -17,7 +17,7 @@ function ProductTab() {
 
   const checkout = useSelector(checkoutSelector);
   const { data, loaded } = checkout;
-
+  console.log(data);
   return (
     <Grid container className={cx('wrapper')}>
       <Grid xs={12}>

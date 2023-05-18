@@ -18,9 +18,31 @@ function LoginForm() {
   const navigate = useNavigate();
   const [usernameInput, setUsernameInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
+  const [otp, setOTP] = useState('');
+  const [show, setShow] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   const toastRef = useRef();
   const Notify = useNotification(toastRef);
-  const [loading, setLoading] = useState(false);
+
+  const handleLogin = async () => {
+    setLoading(true);
+
+    const response = await authServices.OTPCheck({
+      userName: usernameInput,
+      password: passwordInput,
+    });
+
+    if (response) {
+      if (show) OTPlogin();
+      setShow(true);
+    } else {
+      setShow(false);
+      login();
+    }
+
+    setLoading(false);
+  };
 
   const login = async () => {
     setLoading(true);
@@ -28,6 +50,33 @@ function LoginForm() {
     const response = await authServices.login({
       userName: usernameInput,
       password: passwordInput,
+      rememberMe: false,
+    });
+
+    if (response.isSuccess === false) {
+      setLoading(false);
+      Notify(response.message, 'error');
+    }
+
+    if (response.isSuccess === true) {
+      Cookies.set('jwt', response.resultObj.token, { expires: 30 / 1440, secure: true });
+      Cookies.set('user-id', response.resultObj.userId, { expires: 30 / 1440, secure: true });
+      Notify('Đăng nhập thành công');
+      const timerId = setTimeout(() => {
+        clearTimeout(timerId);
+        setLoading(false);
+        navigate(config.routes.home, { replace: true });
+      }, 3000);
+    }
+  };
+
+  const OTPlogin = async () => {
+    setLoading(true);
+    // Make Api call
+    const response = await authServices.OTPlogin({
+      userName: usernameInput,
+      password: passwordInput,
+      code: otp,
       rememberMe: false,
     });
 
@@ -69,7 +118,7 @@ function LoginForm() {
       return;
     }
 
-    login();
+    handleLogin();
   };
 
   return (
@@ -97,6 +146,18 @@ function LoginForm() {
             }}
           />
         </FormControl>
+        {show && (
+          <FormControl>
+            <TextField
+              id="otp"
+              label="Mã OTP"
+              value={otp}
+              onChange={(e) => {
+                setOTP(e.currentTarget.value);
+              }}
+            />
+          </FormControl>
+        )}
         {loading ? (
           <>
             <Button variant="contained" color="error" disabled sx={{ height: '36.5px' }}>

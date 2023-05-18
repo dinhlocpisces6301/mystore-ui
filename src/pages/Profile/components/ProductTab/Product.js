@@ -1,15 +1,29 @@
 import classNames from 'classnames/bind';
 import Grid from '@mui/material/Unstable_Grid2';
-import { Box, IconButton, Typography } from '@mui/material';
+import { Box, FormControl, IconButton, TextField, Typography } from '@mui/material';
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
+import CheckIcon from '@mui/icons-material/Check';
 
 import { currencyFormat } from '~/utils';
 import * as imageServices from '~/services/imageServices';
+import * as productServices from '~/services/productServices';
+
 import styles from './ProductTab.module.scss';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 const cx = classNames.bind(styles);
 
 function Product({ data }) {
+  const [activeCode, setActiveCode] = useState('');
+  const active = async (payload) => {
+    const response = await productServices.activeGame(payload);
+    if (response) console.log(response.data);
+  };
+
+  const handleClick = () => {
+    if (activeCode === '') return;
+    active({ gameId: data.id, key: activeCode });
+  };
   // console.log(data);
   return (
     <Grid container xs={12} className={cx('item')}>
@@ -32,16 +46,33 @@ function Product({ data }) {
         </Box>
       </Grid>
       <Grid xs={12} md={2} className={cx('item-action')}>
-        <a
-          href={process.env.PUBLIC_URL + '/files/game.rar'}
-          target="_blank"
-          rel="noopener noreferrer"
-          download={`${data.name}.rar`}
-        >
-          <IconButton>
-            <CloudDownloadIcon />
-          </IconButton>
-        </a>
+        {data.isActive ? (
+          <a
+            href={process.env.PUBLIC_URL + '/files/game.rar'}
+            target="_blank"
+            rel="noopener noreferrer"
+            download={`${data.name}.rar`}
+          >
+            <IconButton>
+              <CloudDownloadIcon />
+            </IconButton>
+          </a>
+        ) : (
+          <>
+            <FormControl>
+              <TextField
+                id="active-code"
+                value={activeCode}
+                onChange={(e) => {
+                  setActiveCode(e.currentTarget.value);
+                }}
+              />
+            </FormControl>
+            <IconButton variant="contained" color="error" onClick={handleClick}>
+              <CheckIcon />
+            </IconButton>
+          </>
+        )}
       </Grid>
     </Grid>
   );

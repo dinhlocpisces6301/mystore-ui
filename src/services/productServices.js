@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie';
 import { httpRequest } from '~/utils';
 
 export const getAllProduct = async (page, size = 10) => {
@@ -84,6 +85,18 @@ export const getProductComment = async (id, page = 1, size = 1000000) => {
 export const rating = async (payload) => {
   try {
     const res = await httpRequest.post(`comment`, payload);
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const activeGame = async (payload) => {
+  try {
+    const userId = Cookies.get('user-id');
+    const data = { userId: userId, ...payload };
+
+    const res = await httpRequest.post(`games/active-game`, data);
     return res;
   } catch (error) {
     console.log(error);

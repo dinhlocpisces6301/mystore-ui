@@ -52,5 +52,26 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 16px 0;
+  // margin: 16px 0;
+  // width: 50%;
+
+  div > input {
+    background: #fff;
+    border-radius: 4px;
+  }
+
+  > div {
+    margin: 8px 0;
+  }
+
+  > :not(style) {
+    margin: 8px 0;
+  }
+
+  > button {
+    margin: 0 16px;
+    width: 56px;
+    height: 56px;
+    align-self: center;
+  }
 }
