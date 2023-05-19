@@ -84,3 +84,57 @@ export const OTPCheck = async (user) => {
     return false;
   }
 };
+
+export const GetQR = async (user) => {
+  try {
+    const jwt_token = Cookies.get('jwt');
+    const res = await httpRequest.get(`TOTP/qr-code-image?UserName=${user.userName}&Password=${user.password}`, {
+      headers: {
+        Authorization: `Bearer ${jwt_token}`,
+      },
+      responseType: 'blob',
+    });
+    return res;
+  } catch (error) {
+    if (error.code === 'ERR_NETWORK') {
+      return false;
+    }
+    return false;
+  }
+};
+
+export const OTPTurnOn = async (user) => {
+  const jwt_token = Cookies.get('jwt');
+
+  try {
+    const res = await httpRequest.get(`TOTP/OTP-on?Email=${user.email}&Password=${user.password}`, {
+      headers: {
+        Authorization: `Bearer ${jwt_token}`,
+      },
+    });
+    return res;
+  } catch (error) {
+    if (error.code === 'ERR_NETWORK') {
+      return false;
+    }
+    return false;
+  }
+};
+
+export const OTPTurnOff = async (user) => {
+  const jwt_token = Cookies.get('jwt');
+
+  try {
+    const res = await httpRequest.get(`TOTP/OTP-off?Email=${user.email}&Password=${user.password}`, {
+      headers: {
+        Authorization: `Bearer ${jwt_token}`,
+      },
+    });
+    return res;
+  } catch (error) {
+    if (error.code === 'ERR_NETWORK') {
+      return false;
+    }
+    return false;
+  }
+};
