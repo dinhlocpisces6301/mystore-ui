@@ -15,6 +15,7 @@ const cx = classNames.bind(styles);
 
 function Product({ data }) {
   const [activeCode, setActiveCode] = useState('');
+
   const active = async (payload) => {
     const response = await productServices.activeGame(payload);
     if (response) console.log(response.data);

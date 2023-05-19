@@ -26,8 +26,6 @@ function LoginForm() {
   const Notify = useNotification(toastRef);
 
   const handleLogin = async () => {
-    setLoading(true);
-
     const response = await authServices.OTPCheck({
       userName: usernameInput,
       password: passwordInput,
@@ -40,8 +38,6 @@ function LoginForm() {
       setShow(false);
       login();
     }
-
-    setLoading(false);
   };
 
   const login = async () => {

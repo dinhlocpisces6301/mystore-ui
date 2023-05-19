@@ -94,9 +94,11 @@ export const rating = async (payload) => {
 export const activeGame = async (payload) => {
   try {
     const userId = Cookies.get('user-id');
-    const data = { userId: userId, ...payload };
-
-    const res = await httpRequest.post(`games/active-game`, data);
+    const res = await httpRequest.post(`games/active-game`, {
+      userId: userId,
+      gameId: payload.gameId,
+      key: payload.key,
+    });
     return res;
   } catch (error) {
     console.log(error);

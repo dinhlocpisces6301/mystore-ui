@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  padding: 0 32px;
+  background: #faf7f0;
+
+  div > input {
+    background: #fff;
+    border-radius: 4px;
+  }
+  label {
+    padding: 4px 0px;
+    font-weight: bold;
+  }
+
+  > :not(style) {
+    margin: 8px 0;
+  }
+
+  > button {
+    margin: 16px 0;
+    width: 120px;
+    align-self: flex-start;
+  }
+}
