@@ -69,14 +69,14 @@ const ImageEditor = forwardRef(({ typeImage }, ref) => {
         dispatch(getUserData());
         setLoading(false);
         setShow(false);
-      }, 3000);
+      }, 2000);
     }
     if (response.isSuccess === false) {
       Notify(response.message, 'error');
       const timerId = setTimeout(() => {
         clearTimeout(timerId);
         setLoading(false);
-      }, 3000);
+      }, 2000);
     }
   };
   const handleChangeImage = (e) => {

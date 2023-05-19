@@ -84,7 +84,22 @@ export const OTPCheck = async (user) => {
     return false;
   }
 };
-
+export const OTPCheckWithoutPassword = async (user) => {
+  try {
+    const jwt_token = Cookies.get('jwt');
+    const res = await httpRequest.get(`TOTP/OTP-check-withoutpassword?UserName=${user.userName}`, {
+      headers: {
+        Authorization: `Bearer ${jwt_token}`,
+      },
+    });
+    return res;
+  } catch (error) {
+    if (error.code === 'ERR_NETWORK') {
+      return false;
+    }
+    return false;
+  }
+};
 export const GetQR = async (user) => {
   try {
     const jwt_token = Cookies.get('jwt');

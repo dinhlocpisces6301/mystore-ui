@@ -62,7 +62,7 @@ function LoginForm() {
         clearTimeout(timerId);
         setLoading(false);
         navigate(config.routes.home, { replace: true });
-      }, 3000);
+      }, 2000);
     }
   };
 
@@ -89,7 +89,7 @@ function LoginForm() {
         clearTimeout(timerId);
         setLoading(false);
         navigate(config.routes.home, { replace: true });
-      }, 3000);
+      }, 2000);
     }
   };
 

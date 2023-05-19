@@ -10,7 +10,7 @@ function DefaultLayout({ children }) {
       <Grid
         container
         sx={{
-          backgroundColor: '#fff',
+          background: `url(${process.env.PUBLIC_URL + '/images/bg.jpg'})`,
         }}
       >
         <Grid
@@ -19,7 +19,7 @@ function DefaultLayout({ children }) {
           lg={8}
           lgOffset={2}
           sx={{
-            minHeight: 'auto',
+            minHeight: '100vh',
           }}
         >
           {children}

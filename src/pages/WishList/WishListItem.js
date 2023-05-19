@@ -63,14 +63,14 @@ function WishListItem({ data }) {
         clearTimeout(timerId);
         setLoading2(false);
         dispatch(getCart());
-      }, 3000);
+      }, 2000);
     }
     if (response.isSuccess === false) {
       Notify(response.message, 'error');
       const timerId = setTimeout(() => {
         clearTimeout(timerId);
         setLoading2(false);
-      }, 3000);
+      }, 2000);
     }
   };
   const handleAddToCart = () => {

@@ -11,7 +11,7 @@ function DefaultLayout({ children }) {
       <Grid
         container
         sx={{
-          backgroundColor: '#fff',
+          background: `url(${process.env.PUBLIC_URL + '/images/bg.jpg'})`,
         }}
       >
         <Grid

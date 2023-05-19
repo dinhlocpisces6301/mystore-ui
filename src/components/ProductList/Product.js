@@ -19,10 +19,16 @@ function Product({ data }) {
           <Link to={`/product/${data.id || data.gameID}`}>
             <Typography variant="subTitle">{data.name}</Typography>
           </Link>
-          {data.discount !== 0 && <Typography variant="origin-price">{currencyFormat(data.price)}</Typography>}
-          <Typography variant="price">
-            {data.price === 0 ? 'Miễn phí' : currencyFormat(data.price * (1 - data.discount / 100))}
-          </Typography>
+          {data.status ? (
+            <>
+              {data.discount !== 0 && <Typography variant="origin-price">{currencyFormat(data.price)}</Typography>}
+              <Typography variant="price">
+                {data.price === 0 ? 'Miễn phí' : currencyFormat(data.price * (1 - data.discount / 100))}
+              </Typography>
+            </>
+          ) : (
+            <Typography variant="price">Sắp ra mắt</Typography>
+          )}
         </Box>
       </Box>
     </Grid>

@@ -42,6 +42,25 @@ function ProductList({ title = 'Product List', data }) {
             />
           </Grid>
         )}
+
+        {location.pathname === '/' && data.pageCount > 1 && (
+          <Grid xs={12} sx={{ display: 'flex', justifyContent: 'center', marginY: 2 }}>
+            <Pagination
+              variant="outlined"
+              shape="rounded"
+              color="error"
+              count={data.pageCount}
+              page={page}
+              renderItem={(item) => (
+                <PaginationItem
+                  component={Link}
+                  to={`/products${item.page === 1 ? '' : `?page=${item.page}`}`}
+                  {...item}
+                />
+              )}
+            />
+          </Grid>
+        )}
       </Grid>
     </>
   );

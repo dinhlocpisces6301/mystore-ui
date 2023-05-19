@@ -19,9 +19,13 @@ function ResultItem({ data }) {
       <Grid xs={7} className={cx('result-detail')}>
         <Link to={`/product/${data.id}`}>
           <Typography variant="subTitle">{data.name}</Typography>
-          <Typography variant="price">
-            {data.price === 0 ? 'Miễn phí' : currencyFormat(data.price * (1 - data.discount / 100))}
-          </Typography>
+          {data.status ? (
+            <Typography variant="price">
+              {data.price === 0 ? 'Miễn phí' : currencyFormat(data.price * (1 - data.discount / 100))}
+            </Typography>
+          ) : (
+            <Typography variant="price">Sắp ra mắt</Typography>
+          )}
         </Link>
       </Grid>
     </Grid>

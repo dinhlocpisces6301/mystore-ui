@@ -56,7 +56,7 @@ function ChangeInfoTab() {
         clearTimeout(timerId);
         Notify('Thay đổi thành công');
         setLoading(false);
-      }, 1000);
+      }, 2000);
     }
   };
 

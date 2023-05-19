@@ -3,7 +3,9 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Grid from '@mui/material/Unstable_Grid2';
 import { Box, Typography } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { getPublisher, publisherSelector } from '~/store/reducers/publisherSlice';
 import { currencyFormat, randomColor } from '~/utils';
 import GenreList from '~/components/GenreList/';
 import SliderButton from './SliderButton';
@@ -50,6 +52,13 @@ function Slider() {
     fetchApi();
   }, []);
 
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getPublisher());
+  }, [dispatch]);
+  const publisher = useSelector(publisherSelector);
+  const { data } = publisher;
+
   return (
     <Grid
       container
@@ -92,7 +101,9 @@ function Slider() {
                 <Typography variant="title">
                   <Link to={`/product/${product.id}`}>{product.name}</Link>
                 </Typography>
-                <Typography variant="company">{`Nhà phát hành: ${product.publisher || 'STEM'}`}</Typography>
+                <Typography variant="company">{`Nhà phát hành: ${
+                  data?.find((p) => p.id === product.publisherId).name || 'STEM'
+                }`}</Typography>
                 {product.discount !== 0 && (
                   <Typography variant="origin-price">{currencyFormat(product.price)}</Typography>
                 )}

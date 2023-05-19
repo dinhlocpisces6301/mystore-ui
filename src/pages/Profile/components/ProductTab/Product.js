@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import Grid from '@mui/material/Unstable_Grid2';
-import { Box, FormControl, IconButton, TextField, Typography } from '@mui/material';
+import { Box, Button, FormControl, IconButton, TextField, Typography } from '@mui/material';
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 import CheckIcon from '@mui/icons-material/Check';
 
@@ -11,14 +11,17 @@ import * as productServices from '~/services/productServices';
 import styles from './ProductTab.module.scss';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { getCheckout } from '~/store/reducers/checkoutSlice';
 const cx = classNames.bind(styles);
 
 function Product({ data }) {
   const [activeCode, setActiveCode] = useState('');
+  const dispatch = useDispatch();
 
   const active = async (payload) => {
     const response = await productServices.activeGame(payload);
-    if (response) console.log(response.data);
+    if (response) dispatch(getCheckout());
   };
 
   const handleClick = () => {
@@ -33,7 +36,7 @@ function Product({ data }) {
           <img src={imageServices.getImage(data.listImage[0])} alt="Game" />
         </Box>
       </Grid>
-      <Grid xs={12} md={6}>
+      <Grid xs={12} md={5}>
         <Box className={cx('item-detail')}>
           <Link to={`/product/${data.id}`}>
             <Typography variant="subTitle">{data.name}</Typography>
@@ -46,7 +49,7 @@ function Product({ data }) {
           </Typography>
         </Box>
       </Grid>
-      <Grid xs={12} md={2} className={cx('item-action')}>
+      <Grid xs={12} md={3} className={cx('item-action')}>
         {data.isActive ? (
           <a
             href={process.env.PUBLIC_URL + '/files/game.rar'}
@@ -62,6 +65,7 @@ function Product({ data }) {
           <>
             <FormControl>
               <TextField
+                label="Nhập mã kích hoạt"
                 id="active-code"
                 value={activeCode}
                 onChange={(e) => {
@@ -69,9 +73,9 @@ function Product({ data }) {
                 }}
               />
             </FormControl>
-            <IconButton variant="contained" color="error" onClick={handleClick}>
+            <Button variant="outlined" color="error" onClick={handleClick}>
               <CheckIcon />
-            </IconButton>
+            </Button>
           </>
         )}
       </Grid>

@@ -27,11 +27,24 @@ function OTPChangeTab() {
   const user = useSelector(userSelector);
 
   const { data } = user;
+  useEffect(() => {
+    const checkOTP = async () => {
+      const response = await authServices.OTPCheckWithoutPassword({ userName: data.userName });
+      if (response) {
+        setChecked(true);
+      } else {
+        setChecked(false);
+      }
+    };
+    checkOTP();
+  }, [data.userName]);
+
   const getQR = async () => {
     const response = await authServices.GetQR({ userName: data.userName, password: password });
     if (response) {
       const imageObjectURL = URL.createObjectURL(response);
       setQRImage(imageObjectURL);
+      setShow(true);
     }
   };
   const OTPTurnOn = async () => {
@@ -39,7 +52,6 @@ function OTPChangeTab() {
     const response = await authServices.OTPTurnOn({ email: data.email, password: password });
     if (response) {
       Notify('Bật thành Công');
-      setShow(true);
     } else {
       Notify('Có lỗi xảy ra', 'error');
     }
@@ -126,7 +138,7 @@ function OTPChangeTab() {
             Xác nhận
           </Button>
         )}
-        {show && (
+        {checked && (
           <Button variant="contained" color="primary" onClick={handleGetQR}>
             Lấy mã
           </Button>

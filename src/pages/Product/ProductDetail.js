@@ -26,6 +26,7 @@ import config from '~/config';
 
 import classNames from 'classnames/bind';
 import styles from './ProductDetail.module.scss';
+import { getPublisher, publisherSelector } from '~/store/reducers/publisherSlice';
 const cx = classNames.bind(styles);
 
 function ProductDetail({ data }) {
@@ -45,14 +46,14 @@ function ProductDetail({ data }) {
         clearTimeout(timerId);
         setLoading(false);
         dispatch(getCart());
-      }, 3000);
+      }, 2000);
     }
     if (response.isSuccess === false) {
       Notify(response.message, 'error');
       const timerId = setTimeout(() => {
         clearTimeout(timerId);
         setLoading(false);
-      }, 3000);
+      }, 2000);
     }
   };
   const handleAddToCart = () => {
@@ -69,14 +70,14 @@ function ProductDetail({ data }) {
         clearTimeout(timerId);
         setLoading2(false);
         dispatch(getWishlist());
-      }, 3000);
+      }, 2000);
     }
     if (response.isSuccess === false) {
       Notify(response.message, 'error');
       const timerId = setTimeout(() => {
         clearTimeout(timerId);
         setLoading2(false);
-      }, 3000);
+      }, 2000);
     }
   };
   const handleAddToWishlist = () => {
@@ -114,6 +115,11 @@ function ProductDetail({ data }) {
   const Notify = useNotification(toastRef);
   const navigate = useNavigate();
   const isLoggedIn = authServices.isLoggedIn();
+
+  useEffect(() => {
+    dispatch(getPublisher());
+  }, [dispatch]);
+  const publisher = useSelector(publisherSelector);
 
   return product !== undefined ? (
     <Grid container xs={12}>
@@ -188,53 +194,55 @@ function ProductDetail({ data }) {
         </Box>
         <Box className={cx('detail-action')}>
           {isLoggedIn ? (
-            <>
-              {cartData.find((p) => p.id === product.id) === undefined ? (
-                loading ? (
-                  <Button variant="contained" color="success" disableFocusRipple sx={{ height: '36.5px' }}>
-                    <LoadingSpinner />
-                  </Button>
+            product.status && (
+              <>
+                {cartData.find((p) => p.id === product.id) === undefined ? (
+                  loading ? (
+                    <Button variant="contained" color="success" disableFocusRipple sx={{ height: '36.5px' }}>
+                      <LoadingSpinner />
+                    </Button>
+                  ) : (
+                    <Button variant="contained" color="success" onClick={handleAddToCart}>
+                      <AddShoppingCartIcon />
+                      Thêm vào giỏ hàng
+                    </Button>
+                  )
                 ) : (
-                  <Button variant="contained" color="success" onClick={handleAddToCart}>
+                  <Button
+                    variant="contained"
+                    color="success"
+                    onClick={() => {
+                      navigate(config.routes.cart);
+                    }}
+                  >
                     <AddShoppingCartIcon />
-                    Thêm vào giỏ hàng
+                    Xem giỏ hàng
                   </Button>
-                )
-              ) : (
-                <Button
-                  variant="contained"
-                  color="success"
-                  onClick={() => {
-                    navigate(config.routes.cart);
-                  }}
-                >
-                  <AddShoppingCartIcon />
-                  Xem giỏ hàng
-                </Button>
-              )}
-              {wishlistData.find((p) => p.gameID === product.id) === undefined ? (
-                loading2 ? (
-                  <Button variant="contained" disableFocusRipple sx={{ height: '36.5px' }}>
-                    <LoadingSpinner />
-                  </Button>
+                )}
+                {wishlistData.find((p) => p.gameID === product.id) === undefined ? (
+                  loading2 ? (
+                    <Button variant="contained" disableFocusRipple sx={{ height: '36.5px' }}>
+                      <LoadingSpinner />
+                    </Button>
+                  ) : (
+                    <Button variant="contained" onClick={handleAddToWishlist}>
+                      <FavoriteIcon />
+                      Thêm vào wishlist
+                    </Button>
+                  )
                 ) : (
-                  <Button variant="contained" onClick={handleAddToWishlist}>
+                  <Button
+                    variant="contained"
+                    onClick={() => {
+                      navigate(config.routes.wishlist);
+                    }}
+                  >
                     <FavoriteIcon />
-                    Thêm vào wishlist
+                    Xem wishlist
                   </Button>
-                )
-              ) : (
-                <Button
-                  variant="contained"
-                  onClick={() => {
-                    navigate(config.routes.wishlist);
-                  }}
-                >
-                  <FavoriteIcon />
-                  Xem wishlist
-                </Button>
-              )}
-            </>
+                )}
+              </>
+            )
           ) : (
             <Button
               variant="contained"
@@ -249,8 +257,12 @@ function ProductDetail({ data }) {
         </Box>
         <Box className={cx('detail-content')}>
           <Divider flexItem />
-          <Typography variant="company">Nhà phát hành: {product.publisher || 'RockStar'}</Typography>
-          <Typography variant="company">Ngày ra mắt: 17/09/2013</Typography>
+          <Typography variant="company">
+            Nhà phát hành: {publisher.data?.find((p) => p.id === product.publisherId).name || 'STEM'}
+          </Typography>
+          <Typography variant="company">
+            Ngày ra mắt: {product.status ? new Date(product.createdDate).toLocaleDateString('en-GB') : 'Sắp ra mắt'}
+          </Typography>
         </Box>
       </Grid>
       <Grid xs={12}>

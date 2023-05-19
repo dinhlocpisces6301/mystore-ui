@@ -43,7 +43,7 @@ function RegisterForm() {
         clearTimeout(timerId);
         setLoading(false);
         navigate(config.routes.confirm, { replace: true });
-      }, 3000);
+      }, 2000);
     }
   };
 

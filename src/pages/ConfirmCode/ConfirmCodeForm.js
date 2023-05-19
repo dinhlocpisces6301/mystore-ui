@@ -64,7 +64,7 @@ function ConfirmCodeForm() {
         clearTimeout(timerId);
         setLoading(false);
         navigate(config.routes.login, { replace: true });
-      }, 3000);
+      }, 2000);
     }
   };
   const handleClick = () => {

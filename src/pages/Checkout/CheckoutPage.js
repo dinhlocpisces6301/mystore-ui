@@ -36,7 +36,7 @@ function CheckoutPage() {
         dispatch(getCart());
         navigate(config.routes.profile);
         clearTimeout(timerId);
-      }, 4000);
+      }, 2000);
     }
 
     if (response.isSuccess === false) {

@@ -104,3 +104,12 @@ export const activeGame = async (payload) => {
     console.log(error);
   }
 };
+
+export const getPublisher = async () => {
+  try {
+    const res = await httpRequest.get(`publisher`);
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
+};

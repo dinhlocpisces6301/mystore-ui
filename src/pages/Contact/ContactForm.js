@@ -54,7 +54,7 @@ function ContactForm() {
         setLoading(false);
         inputRef.current.focus();
         clearTimeout(timerId);
-      }, 3000);
+      }, 2000);
     }
   };
 
