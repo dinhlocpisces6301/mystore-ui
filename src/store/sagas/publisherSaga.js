@@ -5,7 +5,6 @@ import { getPublisher, getPublisherSuccess } from '../reducers/publisherSlice';
 
 function* handleGetPublisherData() {
   const result = yield call(productServices.getPublisher);
-  console.log(result);
   yield put(getPublisherSuccess(result));
 }
 

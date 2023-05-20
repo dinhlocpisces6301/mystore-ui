@@ -6,7 +6,7 @@ import { Box, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { getPublisher, publisherSelector } from '~/store/reducers/publisherSlice';
-import { currencyFormat, randomColor } from '~/utils';
+import { currencyFormat } from '~/utils';
 import GenreList from '~/components/GenreList/';
 import SliderButton from './SliderButton';
 import * as productServices from '~/services/productServices';
@@ -64,7 +64,6 @@ function Slider() {
       container
       className={cx('wrapper')}
       sx={{
-        background: randomColor,
         overflow: {
           xs: 'hidden',
           md: 'hidden',
@@ -81,6 +80,9 @@ function Slider() {
               xs={12}
               className={slideIndex === index + 1 ? cx('slide', 'aim') : cx('slide')}
               key={product.id}
+              sx={{
+                backgroundColor: 'rbga(255,255,255,1)',
+              }}
             >
               <Grid xs={12} md={8} sx={{ height: { xs: '320px', md: '360px', lg: '400px' } }}>
                 <Link to={`/product/${product.id}`}>
@@ -91,6 +93,7 @@ function Slider() {
                 md={4}
                 className={cx('detail-container')}
                 sx={{
+                  position: 'relative',
                   display: {
                     xs: 'none',
                     md: 'flex',
@@ -98,19 +101,47 @@ function Slider() {
                   },
                 }}
               >
-                <Typography variant="title">
-                  <Link to={`/product/${product.id}`}>{product.name}</Link>
-                </Typography>
-                <Typography variant="company">{`Nhà phát hành: ${
-                  data?.find((p) => p.id === product.publisherId).name || 'STEM'
-                }`}</Typography>
-                {product.discount !== 0 && (
-                  <Typography variant="origin-price">{currencyFormat(product.price)}</Typography>
-                )}
-                <Typography variant="price">
-                  {product.price === 0 ? 'Miễn phí' : currencyFormat(product.price * (1 - product.discount / 100))}
-                </Typography>
-                <GenreList data={{ genreIDs: product.genreIDs, genreName: product.genreName }} />
+                <Box
+                  sx={{
+                    height: '100%',
+                    width: '100%',
+                    background: `url(${imageServices.getImage(product?.listImage[0])})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center center',
+                    backgroundRepeat: 'no-repeat',
+                  }}
+                ></Box>
+                <Box
+                  sx={{
+                    height: '100%',
+                    width: '100%',
+                    position: 'absolute',
+                    backdropFilter: 'blur(2px)',
+                    backgroundColor: 'rgba(255,255,255,0.5)',
+                  }}
+                >
+                  <Typography variant="title">
+                    <Link to={`/product/${product.id}`}>{product.name}</Link>
+                  </Typography>
+                  <Typography variant="company">{`Nhà phát hành: ${
+                    data?.find((p) => p.id === product.publisherId).name || 'STEM'
+                  }`}</Typography>
+                  {product.status ? (
+                    <>
+                      {product.discount !== 0 && (
+                        <Typography variant="origin-price">{currencyFormat(product.price)}</Typography>
+                      )}
+                      <Typography variant="price">
+                        {product.price === 0
+                          ? 'Miễn phí'
+                          : currencyFormat(product.price * (1 - product.discount / 100))}
+                      </Typography>
+                    </>
+                  ) : (
+                    <Typography variant="price">Sắp ra mắt</Typography>
+                  )}
+                  <GenreList data={{ genreIDs: product.genreIDs, genreName: product.genreName }} />
+                </Box>
               </Grid>
             </Grid>
           );

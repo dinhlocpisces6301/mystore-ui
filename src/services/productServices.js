@@ -113,3 +113,12 @@ export const getPublisher = async () => {
     console.log(error);
   }
 };
+
+export const getGameIMG = async (id) => {
+  try {
+    const res = await httpRequest.get(`games/${id}/images`);
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
+};

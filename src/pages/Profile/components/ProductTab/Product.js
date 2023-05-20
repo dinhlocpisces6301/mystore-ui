@@ -10,7 +10,7 @@ import * as productServices from '~/services/productServices';
 
 import styles from './ProductTab.module.scss';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getCheckout } from '~/store/reducers/checkoutSlice';
 const cx = classNames.bind(styles);
@@ -28,12 +28,25 @@ function Product({ data }) {
     if (activeCode === '') return;
     active({ gameId: data.id, key: activeCode });
   };
+
+  const [imgList, setImgList] = useState([]);
+  useEffect(() => {
+    const getIMG = async () => {
+      const response = await productServices.getGameIMG(data.id);
+      if (response) {
+        setImgList(response);
+      }
+    };
+    getIMG();
+    return () => {};
+  }, [data.id]);
+
   // console.log(data);
   return (
     <Grid container xs={12} className={cx('item')}>
       <Grid xs={12} md={4}>
         <Box className={cx('item-img')}>
-          <img src={imageServices.getImage(data.listImage[0])} alt="Game" />
+          <img src={imageServices.getImage(imgList[1])} alt="Game" />
         </Box>
       </Grid>
       <Grid xs={12} md={5}>

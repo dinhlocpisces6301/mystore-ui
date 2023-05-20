@@ -187,10 +187,18 @@ function ProductDetail({ data }) {
             {product.name}
           </Typography>
           <Divider flexItem />
-          {product.discount !== 0 && <Typography variant="origin-price">{currencyFormat(product.price)}</Typography>}
-          <Typography variant="price">
-            {product.price === 0 ? 'Miễn phí' : currencyFormat(product.price * (1 - product.discount / 100))}
-          </Typography>
+          {product.status ? (
+            <>
+              {product.discount !== 0 && (
+                <Typography variant="origin-price">{currencyFormat(product.price)}</Typography>
+              )}
+              <Typography variant="price">
+                {product.price === 0 ? 'Miễn phí' : currencyFormat(product.price * (1 - product.discount / 100))}
+              </Typography>
+            </>
+          ) : (
+            <Typography variant="subTitle">Sắp ra mắt</Typography>
+          )}
         </Box>
         <Box className={cx('detail-action')}>
           {isLoggedIn ? (

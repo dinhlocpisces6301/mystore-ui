@@ -21,9 +21,9 @@
 .detail-container {
   height: 100%;
   flex-direction: column;
-  > span {
-    margin-left: 32px;
-  }
+}
+.detail-container > div > span {
+  margin-left: 32px;
 }
 .dot-container {
   height: 20px;
