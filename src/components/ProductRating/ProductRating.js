@@ -22,7 +22,7 @@ function ProductRating({ productId }) {
   useEffect(() => {
     const fetchApi = async () => {
       const result = await productServices.getProductComment(_productId);
-      setData(result.items);
+      if (result) setData(result.items);
     };
 
     fetchApi();
@@ -47,6 +47,16 @@ function ProductRating({ productId }) {
       point: star,
     });
     if (response === undefined) Notify('Bạn chưa mua sản phẩm này!', 'error');
+    if (response.status === 200) {
+      Notify('Đánh giá thành công!');
+
+      getComments();
+    }
+  };
+
+  const getComments = async () => {
+    const result = await productServices.getProductComment(_productId);
+    if (result) setData(result.items);
   };
 
   const handleRating = () => {
@@ -81,7 +91,7 @@ function ProductRating({ productId }) {
               rows={4}
               value={value}
               onChange={(e) => {
-                setValue(e.currentTarget.value);
+                if (!myComment) setValue(e.currentTarget.value);
               }}
             />
           </FormControl>

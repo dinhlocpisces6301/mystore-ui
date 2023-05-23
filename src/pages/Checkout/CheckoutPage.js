@@ -50,7 +50,7 @@ function CheckoutPage() {
   };
 
   const handleCancelClick = () => {
-    navigate(-1);
+    if (!loading) navigate(-1);
   };
 
   const dispatch = useDispatch();
@@ -101,9 +101,11 @@ function CheckoutPage() {
             </strong>
           </Typography>
           <Box className={cx('btn-container')}>
-            <Button variant="contained" color="error" onClick={handleCancelClick}>
-              Hủy
-            </Button>
+            {
+              <Button variant="contained" color="error" onClick={handleCancelClick}>
+                Hủy
+              </Button>
+            }
 
             {cartData.length > 0 ? (
               loading ? (
@@ -158,6 +160,9 @@ function CheckoutPage() {
                         const order = await actions.order.capture();
                         console.log(order);
                         handlePurchaseClick();
+                      }}
+                      onError={(err) => {
+                        console.error('error from the onError callback', err);
                       }}
                     />
                   </PayPalScriptProvider>

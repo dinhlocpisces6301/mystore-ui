@@ -131,7 +131,10 @@ function Header() {
         }}
       >
         <MenuItem disableTouchRipple>
-          <Typography variant="h6" sx={{ textAlign: 'center', width: '100%', background: '#cfe9f3' }}>
+          <Typography
+            variant="h6"
+            sx={{ textAlign: 'center', width: '100%', background: '#cfe9f3', borderRadius: '4px' }}
+          >
             {username}
           </Typography>
         </MenuItem>
@@ -261,7 +264,7 @@ function Header() {
                 aria-expanded={open ? 'true' : undefined}
                 onClick={handleClick}
               >
-                <Avatar alt="avatar" src={imageServices.getImage(avatar)} variant="square" />
+                <Avatar alt="avatar" src={imageServices.getImage(avatar)} variant="rounded" />
               </IconButton>
               <NavMenu username={userName} />
             </Box>

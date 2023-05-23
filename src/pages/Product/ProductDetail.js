@@ -30,7 +30,6 @@ import { getPublisher, publisherSelector } from '~/store/reducers/publisherSlice
 const cx = classNames.bind(styles);
 
 function ProductDetail({ data }) {
-  // console.log(data);
   const [product, setProduct] = useState(data);
   useEffect(() => {
     setProduct(data);
@@ -125,20 +124,20 @@ function ProductDetail({ data }) {
     <Grid container xs={12}>
       <Grid xs={12} className={cx('header')}>
         <Typography variant="title" mb={1}>
-          {product.name}
+          {product?.name}
         </Typography>
-        <StarsRating star={product.ratePoint} />
+        <StarsRating star={product?.ratePoint} />
       </Grid>
       <Grid xs={12} md={7} className={cx('gallery-container')}>
         <Box className={cx('screen')}>
-          <img src={imageServices.getImage(product.listImage[1])} alt="" className={index === 0 ? cx('focus') : ''} />
-          <img src={imageServices.getImage(product.listImage[2])} alt="" className={index === 1 ? cx('focus') : ''} />
-          <img src={imageServices.getImage(product.listImage[3])} alt="" className={index === 2 ? cx('focus') : ''} />
-          <img src={imageServices.getImage(product.listImage[4])} alt="" className={index === 3 ? cx('focus') : ''} />
+          <img src={imageServices.getImage(product?.listImage[1])} alt="" className={index === 0 ? cx('focus') : ''} />
+          <img src={imageServices.getImage(product?.listImage[2])} alt="" className={index === 1 ? cx('focus') : ''} />
+          <img src={imageServices.getImage(product?.listImage[3])} alt="" className={index === 2 ? cx('focus') : ''} />
+          <img src={imageServices.getImage(product?.listImage[4])} alt="" className={index === 3 ? cx('focus') : ''} />
         </Box>
         <Box className={cx('gallery-items')}>
           <img
-            src={imageServices.getImage(product.listImage[1])}
+            src={imageServices.getImage(product?.listImage[1])}
             alt=""
             className={index === 0 ? cx('gallery-item', 'focus') : cx('gallery-item')}
             onClick={() => {
@@ -146,7 +145,7 @@ function ProductDetail({ data }) {
             }}
           />
           <img
-            src={imageServices.getImage(product.listImage[2])}
+            src={imageServices.getImage(product?.listImage[2])}
             alt=""
             className={index === 1 ? cx('gallery-item', 'focus') : cx('gallery-item')}
             onClick={() => {
@@ -154,7 +153,7 @@ function ProductDetail({ data }) {
             }}
           />
           <img
-            src={imageServices.getImage(product.listImage[3])}
+            src={imageServices.getImage(product?.listImage[3])}
             alt=""
             className={index === 2 ? cx('gallery-item', 'focus') : cx('gallery-item')}
             onClick={() => {
@@ -162,7 +161,7 @@ function ProductDetail({ data }) {
             }}
           />
           <img
-            src={imageServices.getImage(product.listImage[4])}
+            src={imageServices.getImage(product?.listImage[4])}
             alt=""
             className={index === 3 ? cx('gallery-item', 'focus') : cx('gallery-item')}
             onClick={() => {
@@ -179,32 +178,37 @@ function ProductDetail({ data }) {
       </Grid>
       <Grid xs={12} md={5} className={cx('detail-container')}>
         <Box className={cx('detail-img')}>
-          <img src={imageServices.getImage(product.listImage[0])} alt="" />
+          <img src={imageServices.getImage(product?.listImage[0])} alt="" />
         </Box>
-        <StarsRating star={product.ratePoint} />
+        <StarsRating star={product?.ratePoint} />
         <Box className={cx('detail-content')}>
           <Typography variant="subTitle" className={cx('title')}>
-            {product.name}
+            {product?.name}
           </Typography>
           <Divider flexItem />
-          {product.status ? (
-            <>
-              {product.discount !== 0 && (
-                <Typography variant="origin-price">{currencyFormat(product.price)}</Typography>
-              )}
-              <Typography variant="price">
-                {product.price === 0 ? 'Miễn phí' : currencyFormat(product.price * (1 - product.discount / 100))}
-              </Typography>
-            </>
+          {product?.status ? (
+            !product?.isDelete ? (
+              <>
+                {product?.discount !== 0 && (
+                  <Typography variant="origin-price">{currencyFormat(product?.price)}</Typography>
+                )}
+                <Typography variant="price">
+                  {product?.price === 0 ? 'Miễn phí' : currencyFormat(product?.price * (1 - product?.discount / 100))}
+                </Typography>
+              </>
+            ) : (
+              <Typography variant="subTitle">Không có sẵn</Typography>
+            )
           ) : (
             <Typography variant="subTitle">Sắp ra mắt</Typography>
           )}
         </Box>
         <Box className={cx('detail-action')}>
           {isLoggedIn ? (
-            product.status && (
+            product?.status &&
+            !product?.isDelete && (
               <>
-                {cartData.find((p) => p.id === product.id) === undefined ? (
+                {cartData.find((p) => p.id === product?.id) === undefined ? (
                   loading ? (
                     <Button variant="contained" color="success" disableFocusRipple sx={{ height: '36.5px' }}>
                       <LoadingSpinner />
@@ -227,7 +231,7 @@ function ProductDetail({ data }) {
                     Xem giỏ hàng
                   </Button>
                 )}
-                {wishlistData.find((p) => p.gameID === product.id) === undefined ? (
+                {wishlistData.find((p) => p.gameID === product?.id) === undefined ? (
                   loading2 ? (
                     <Button variant="contained" disableFocusRipple sx={{ height: '36.5px' }}>
                       <LoadingSpinner />
@@ -266,20 +270,20 @@ function ProductDetail({ data }) {
         <Box className={cx('detail-content')}>
           <Divider flexItem />
           <Typography variant="company">
-            Nhà phát hành: {publisher.data?.find((p) => p.id === product.publisherId).name || 'STEM'}
+            Nhà phát hành: {publisher.data?.find((p) => p.id === product?.publisherId).name || 'STEM'}
           </Typography>
           <Typography variant="company">
-            Ngày ra mắt: {product.status ? new Date(product.createdDate).toLocaleDateString('en-GB') : 'Sắp ra mắt'}
+            Ngày ra mắt: {product?.status ? new Date(product?.createdDate).toLocaleDateString('en-GB') : 'Sắp ra mắt'}
           </Typography>
         </Box>
       </Grid>
       <Grid xs={12}>
         <Box className={cx('detail-script')}>
           <Divider flexItem variant="middle" />
-          <Typography variant="subTitle">{product.description}</Typography>
+          <Typography variant="subTitle">{product?.description}</Typography>
           <Divider flexItem variant="middle" />
           <Typography variant="subTitle">Thể loại:</Typography>
-          <GenreList data={{ genreIDs: product.genreIDs, genreName: product.genreName }} />
+          <GenreList data={{ genreIDs: product?.genreIDs, genreName: product?.genreName }} />
           <Divider flexItem variant="middle" />
         </Box>
       </Grid>
@@ -290,22 +294,22 @@ function ProductDetail({ data }) {
           </Typography>
 
           <Typography>
-            Hệ điều hành: <strong>{product.srm.os}</strong>
+            Hệ điều hành: <strong>{product?.srm.os}</strong>
           </Typography>
           <Typography>
-            Nhân: <strong>{product.srm.processor}</strong>
+            Nhân: <strong>{product?.srm.processor}</strong>
           </Typography>
           <Typography>
-            Bộ nhớ: <strong>{product.srm.memory}</strong>
+            Bộ nhớ: <strong>{product?.srm.memory}</strong>
           </Typography>
           <Typography>
-            Card đồ họa: <strong>{product.srm.graphics}</strong>
+            Card đồ họa: <strong>{product?.srm.graphics}</strong>
           </Typography>
           <Typography>
-            Lưu trữ: <strong>{product.srm.storage}</strong>
+            Lưu trữ: <strong>{product?.srm.storage}</strong>
           </Typography>
           <Typography>
-            Card âm thanh: <strong>{product.srm.soundcard}</strong>
+            Card âm thanh: <strong>{product?.srm.soundcard}</strong>
           </Typography>
         </Grid>
         <Grid xs={10} md={6} xsOffset={1} mdOffset={0} className={cx('requirement')}>
@@ -314,35 +318,35 @@ function ProductDetail({ data }) {
           </Typography>
 
           <Typography>
-            Hệ điều hành: <strong>{product.srr.os}</strong>
+            Hệ điều hành: <strong>{product?.srr.os}</strong>
           </Typography>
           <Typography>
-            Nhân: <strong>{product.srr.processor}</strong>
+            Nhân: <strong>{product?.srr.processor}</strong>
           </Typography>
           <Typography>
-            Bộ nhớ: <strong>{product.srr.memory}</strong>
+            Bộ nhớ: <strong>{product?.srr.memory}</strong>
           </Typography>
           <Typography>
-            Card đồ họa: <strong>{product.srr.graphics}</strong>
+            Card đồ họa: <strong>{product?.srr.graphics}</strong>
           </Typography>
           <Typography>
-            Lưu trữ: <strong>{product.srr.storage}</strong>
+            Lưu trữ: <strong>{product?.srr.storage}</strong>
           </Typography>
           <Typography>
-            Card âm thanh: <strong>{product.srr.soundcard}</strong>
+            Card âm thanh: <strong>{product?.srr.soundcard}</strong>
           </Typography>
         </Grid>
       </Grid>
       <Grid xs={12}>
-        {product.gameSuggestionList.length > 0 && (
+        {product?.gameSuggestionList.length > 0 && (
           <ProductList
             title="Sản phẩm tương tự"
-            data={{ items: product.gameSuggestionList.slice(0, 5), pageCount: 0 }}
+            data={{ items: product?.gameSuggestionList.slice(0, 5), pageCount: 0 }}
           />
         )}
       </Grid>
       <Grid xs={12} className={cx('conmment-container')}>
-        <ProductRating productId={product.id} />
+        <ProductRating productId={product?.id} />
       </Grid>
       <ToastPortal ref={toastRef} autoClose={true} />
     </Grid>

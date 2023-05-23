@@ -46,7 +46,7 @@ function Product({ data }) {
     <Grid container xs={12} className={cx('item')}>
       <Grid xs={12} md={4}>
         <Box className={cx('item-img')}>
-          <img src={imageServices.getImage(imgList[1])} alt="Game" />
+          <img src={imageServices.getImage(imgList[1]?.filePath)} alt="Game" />
         </Box>
       </Grid>
       <Grid xs={12} md={5}>
