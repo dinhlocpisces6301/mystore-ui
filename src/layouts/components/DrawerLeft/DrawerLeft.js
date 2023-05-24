@@ -1,4 +1,4 @@
-import { Box, Stack } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import config from '~/config';
 
@@ -9,11 +9,10 @@ function DrawerLeft({ onClose }) {
     <Box onClick={onClose} sx={{ height: '100%' }}>
       <Box sx={{ height: '80px', width: '250px', background: '#cfe9f3' }}></Box>
       <Box>
-        <Stack my={1}>
+        <Stack my={2}>
           <Box
             py={1}
             sx={{
-              textAlign: 'center',
               background: '#cfe9f3',
               '&:hover': {
                 background: '#aad4ff',
@@ -22,27 +21,25 @@ function DrawerLeft({ onClose }) {
             }}
             onClick={() => navigate(config.routes.home)}
           >
-            Trang chủ
+            <Typography variant="subTitle">Trang chủ</Typography>
           </Box>
 
           {/* <Box
             py={1}
             sx={{
-              textAlign: 'center',
               background: '#cfe9f3',
               '&:hover': {
                 background: '#aad4ff',
               },
-              onClick={() => navigate(config.routes.home)}
             }}
+            onClick={() => navigate(config.routes.home)}
           >
-            Cộng đồng
+            <Typography variant="subTitle">Cộng đồng</Typography>
           </Box> */}
 
           <Box
             py={1}
             sx={{
-              textAlign: 'center',
               background: '#cfe9f3',
               '&:hover': {
                 background: '#aad4ff',
@@ -51,13 +48,12 @@ function DrawerLeft({ onClose }) {
             }}
             onClick={() => navigate(config.routes.contact)}
           >
-            Phản hồi
+            <Typography variant="subTitle">Phản hồi</Typography>
           </Box>
 
           <Box
             py={1}
             sx={{
-              textAlign: 'center',
               background: '#cfe9f3',
               '&:hover': {
                 background: '#aad4ff',
@@ -66,7 +62,7 @@ function DrawerLeft({ onClose }) {
             }}
             onClick={() => navigate(config.routes.about)}
           >
-            Về chúng tôi
+            <Typography variant="subTitle">Về chúng tôi</Typography>
           </Box>
         </Stack>
       </Box>

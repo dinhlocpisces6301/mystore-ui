@@ -60,7 +60,7 @@ function DrawerRight({ onClose }) {
     <Box onClick={onClose} sx={{ height: '100%' }}>
       <Box sx={{ height: '80px', width: '250px', background: '#cfe9f3' }}></Box>
       {isLoggedIn ? (
-        <Stack spacing={2} m={1}>
+        <Stack spacing={2} m={2}>
           <Button onClick={() => navigate(`/profile/@${userName}`)}>
             <Avatar
               alt="avatar"
