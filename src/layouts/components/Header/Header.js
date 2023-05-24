@@ -11,6 +11,7 @@ import {
   Divider,
   ListItemIcon,
   Typography,
+  Drawer,
 } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -22,6 +23,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import config from '~/config';
 import images from '~/assets/images';
+
+import DrawerLeft from '../DrawerLeft';
+import DrawerRight from '../DrawerRight';
 
 import { getUserData, userSelector } from '~/store/reducers/userSlice';
 import { getCart, cartSelector } from '~/store/reducers/cartSlice';
@@ -68,6 +72,7 @@ function Header() {
   useLayoutEffect(() => {
     setWishlistData(wishlist.data || []);
   }, [wishlist]);
+
   // Phần điều hướng của Header
   const NavItems = () => {
     return (
@@ -155,6 +160,21 @@ function Header() {
     );
   };
 
+  const [drawer, setDrawer] = useState({
+    top: false,
+    left: false,
+    bottom: false,
+    right: false,
+  });
+
+  const toggleDrawer = (anchor, open) => (event) => {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+
+    setDrawer({ ...drawer, [anchor]: open });
+  };
+
   return (
     <AppBar position="sticky" sx={{ background: '#cfe9f3' }}>
       {/* Logo start */}
@@ -176,9 +196,14 @@ function Header() {
                 lg: 'none',
               },
             }}
+            onClick={toggleDrawer('left', true)}
           >
             <MenuIcon />
           </IconButton>
+          <Drawer anchor={'left'} open={drawer['left']} onClose={toggleDrawer('left', false)}>
+            <DrawerLeft onClose={toggleDrawer('left', false)} />
+          </Drawer>
+
           <Box
             className={cx('logo')}
             sx={{
@@ -191,6 +216,7 @@ function Header() {
               <img src={images.logo} alt="Gaming store" />
             </Link>
           </Box>
+
           <IconButton
             className={cx('responsive-btn')}
             sx={{
@@ -198,9 +224,13 @@ function Header() {
                 lg: 'none',
               },
             }}
+            onClick={toggleDrawer('right', true)}
           >
             <AccountCircleIcon />
           </IconButton>
+          <Drawer anchor={'right'} open={drawer['right']} onClose={toggleDrawer('right', false)}>
+            <DrawerRight onClose={toggleDrawer('right', false)} />
+          </Drawer>
         </Grid>
         {/* Logo end */}
 

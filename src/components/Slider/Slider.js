@@ -79,14 +79,14 @@ function Slider() {
               container
               xs={12}
               className={slideIndex === index + 1 ? cx('slide', 'aim') : cx('slide')}
-              key={product.id}
+              key={product?.id}
               sx={{
                 backgroundColor: 'rbga(255,255,255,1)',
               }}
             >
               <Grid xs={12} md={8} sx={{ height: { xs: '320px', md: '360px', lg: '400px' } }}>
-                <Link to={`/product/${product.id}`}>
-                  <img src={imageServices.getImage(product.listImage[1])} alt="" className={cx('slider-img')} />
+                <Link to={`/product/${product?.id}`}>
+                  <img src={imageServices.getImage(product?.listImage[1])} alt="" className={cx('slider-img')} />
                 </Link>
               </Grid>
               <Grid
@@ -121,26 +121,26 @@ function Slider() {
                   }}
                 >
                   <Typography variant="title">
-                    <Link to={`/product/${product.id}`}>{product.name}</Link>
+                    <Link to={`/product/${product?.id}`}>{product?.name}</Link>
                   </Typography>
                   <Typography variant="company">{`Nhà phát hành: ${
-                    data?.find((p) => p.id === product.publisherId).name || 'STEM'
+                    data?.find((p) => p.id === product?.publisherId)?.name || 'STEM'
                   }`}</Typography>
-                  {product.status ? (
+                  {product?.status ? (
                     <>
-                      {product.discount !== 0 && (
-                        <Typography variant="origin-price">{currencyFormat(product.price)}</Typography>
+                      {product?.discount !== 0 && (
+                        <Typography variant="origin-price">{currencyFormat(product?.price)}</Typography>
                       )}
                       <Typography variant="price">
-                        {product.price === 0
+                        {product?.price === 0
                           ? 'Miễn phí'
-                          : currencyFormat(product.price * (1 - product.discount / 100))}
+                          : currencyFormat(product?.price * (1 - product?.discount / 100))}
                       </Typography>
                     </>
                   ) : (
                     <Typography variant="price">Sắp ra mắt</Typography>
                   )}
-                  <GenreList data={{ genreIDs: product.genreIDs, genreName: product.genreName }} />
+                  <GenreList data={{ genreIDs: product?.genreIDs, genreName: product?.genreName }} />
                 </Box>
               </Grid>
             </Grid>
