@@ -4,6 +4,7 @@ import { useParams, useSearchParams } from 'react-router-dom';
 import * as productServices from '~/services/productServices';
 import ProductList from '~/components/ProductList';
 import SearchBar from '~/components/SearchBar';
+import { Skeleton } from '@mui/material';
 function Search() {
   const { keyword } = useParams();
   // eslint-disable-next-line no-unused-vars
@@ -14,7 +15,9 @@ function Search() {
   useEffect(() => {
     const fetchApi = async () => {
       const result = await productServices.getProductsByKeyword(keyword, page || 1);
-      setData(result);
+      if (result) {
+        if (result.items.length > 0) setData(result);
+      }
     };
 
     fetchApi();
@@ -26,7 +29,7 @@ function Search() {
       {data !== undefined ? (
         <ProductList title={`Từ khóa: ${keyword} - Trang ${page || 1}`} data={data} />
       ) : (
-        <h1>Loading . . .</h1>
+        <Skeleton variant="rectangular" height={'100%'} />
       )}
     </>
   );

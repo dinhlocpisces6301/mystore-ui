@@ -6,7 +6,6 @@ import * as productServices from '~/services/productServices';
 import ProductList from '~/components/ProductList';
 import SearchBar from '~/components/SearchBar';
 import CategoryList from './CategoryList';
-import { Skeleton } from '@mui/material';
 
 function Category() {
   const { genreId } = useParams();
@@ -19,17 +18,23 @@ function Category() {
     const fetchApi = async () => {
       if (genreId) {
         const result = await productServices.getProductsByGenreId(genreId, page || 1);
-        setData(result);
+        if (result) {
+          if (result.items.length > 0) setData(result);
+        }
       }
     };
     fetchApi();
+
+    return () => {
+      setData();
+    };
   }, [genreId, page]);
 
   useEffect(() => {
     const fetchApi = async () => {
       if (genreId) {
         const result = await categoryServices.getCategoryById(genreId);
-        setGenreName(result.name);
+        if (result) setGenreName(result.name);
       }
     };
     fetchApi();
@@ -39,11 +44,11 @@ function Category() {
     <>
       <SearchBar />
 
-      {genreId !== undefined ? (
+      {genreId !== undefined && genreId !== 'undefined' ? (
         data !== undefined ? (
           <ProductList title={`Thể loại: ${genreName} - Trang ${page || 1}`} data={data} />
         ) : (
-          <Skeleton variant="rectangular" height={'100%'} />
+          <CategoryList />
         )
       ) : (
         <CategoryList />

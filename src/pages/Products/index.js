@@ -1,3 +1,4 @@
+import { Skeleton } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 import ProductList from '~/components/ProductList';
@@ -38,7 +39,9 @@ function Products() {
           break;
         }
       }
-      setData(result);
+      if (result) {
+        if (result.items.length > 0) setData(result);
+      }
     };
 
     fetchApi();
@@ -50,7 +53,7 @@ function Products() {
       {data !== undefined ? (
         <ProductList title={`${title} - Trang ${page || 1}`} data={data} />
       ) : (
-        <h1>Loading . . .</h1>
+        <Skeleton variant="rectangular" height={'100%'} />
       )}
     </>
   );
