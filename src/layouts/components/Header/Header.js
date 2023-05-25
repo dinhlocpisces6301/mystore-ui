@@ -80,10 +80,10 @@ function Header() {
         <NavLink to={config.routes.home} className={({ isActive }) => (isActive ? cx('active') : undefined)}>
           Trang chủ
         </NavLink>
-        {/* 
-        <NavLink to={config.routes.community} className={({ isActive }) => (isActive ? cx('active') : undefined)}>
-          Cộng đồng
-        </NavLink> */}
+
+        <NavLink to={'/category'} className={({ isActive }) => (isActive ? cx('active') : undefined)}>
+          Thể loại
+        </NavLink>
 
         <NavLink to={config.routes.contact} className={({ isActive }) => (isActive ? cx('active') : undefined)}>
           Phản hồi

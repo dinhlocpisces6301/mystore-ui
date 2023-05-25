@@ -66,7 +66,7 @@ function DrawerRight({ onClose }) {
               alt="avatar"
               src={imageServices.getImage(avatar)}
               variant="rounded"
-              sx={{ height: '80px', width: '80px' }}
+              sx={{ height: '80px', width: '80px', border: '2px solid #ccc' }}
             />
           </Button>
           <Typography variant="subTitle">{userName}</Typography>

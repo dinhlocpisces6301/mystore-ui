@@ -26,7 +26,7 @@ function Comment({ data }) {
     <Box className={cx('comment')}>
       {userData !== undefined && (
         <Box className={cx('user-detail')}>
-          <img src={imageServices.getImage(data.avatar)} alt="" />
+          <img src={imageServices.getImage(userData.avatarPath)} alt="" />
           <Typography variant="subTitle">{userData.userName}</Typography>
         </Box>
       )}

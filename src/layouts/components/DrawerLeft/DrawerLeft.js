@@ -24,7 +24,7 @@ function DrawerLeft({ onClose }) {
             <Typography variant="subTitle">Trang chủ</Typography>
           </Box>
 
-          {/* <Box
+          <Box
             py={1}
             sx={{
               background: '#cfe9f3',
@@ -32,10 +32,10 @@ function DrawerLeft({ onClose }) {
                 background: '#aad4ff',
               },
             }}
-            onClick={() => navigate(config.routes.home)}
+            onClick={() => navigate('/category')}
           >
-            <Typography variant="subTitle">Cộng đồng</Typography>
-          </Box> */}
+            <Typography variant="subTitle">Thể loại</Typography>
+          </Box>
 
           <Box
             py={1}
