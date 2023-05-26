@@ -103,6 +103,11 @@ function ProductRating({ productId }) {
         </>
       )}
       <Box className={cx('comment-container')}>
+        <Box>
+          <Typography variant="subTitle" align="left">
+            Đánh giá của người mua:
+          </Typography>
+        </Box>
         {data.map((item, index) => {
           if (item.userId === userId) return <Fragment key={index}></Fragment>;
           return <Comment data={item} key={item.id} />;

@@ -337,7 +337,9 @@ function ProductDetail({ data }) {
           </Typography>
         </Grid>
       </Grid>
+
       <Grid xs={12}>
+        <Divider flexItem variant="middle" />
         {product?.gameSuggestionList.length > 0 && (
           <ProductList
             title="Sản phẩm tương tự"
@@ -346,6 +348,7 @@ function ProductDetail({ data }) {
         )}
       </Grid>
       <Grid xs={12} className={cx('conmment-container')}>
+        <Divider flexItem variant="middle" />
         <ProductRating productId={product?.id} />
       </Grid>
       <ToastPortal ref={toastRef} autoClose={true} />

@@ -99,7 +99,7 @@ function ConfirmCodeForm() {
     <Grid xs={12} md={6} xsOffset={0} mdOffset={3}>
       <Box className={cx('container')} component="form" noValidate autoComplete="off">
         <Typography variant="title">Xác minh tài khoản</Typography>
-        <Typography variant="subTitle">Thực hiện bước này để hoàn thành việc đăng ký </Typography>
+        <Typography variant="subTitle">Thực hiện bước này để hoàn thành việc đăng ký</Typography>
         <FormControl>
           <TextField
             id="username"
